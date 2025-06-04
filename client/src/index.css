@@ -58,7 +58,7 @@
   }
 
   body {
-    @apply font-inter antialiased bg-black text-white;
+    @apply antialiased bg-black text-white;
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
