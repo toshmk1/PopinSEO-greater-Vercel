@@ -26,13 +26,12 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
       <div className="text-center max-w-4xl mx-auto">
-        {/* Brand Name with Gradient Sweep Animation */}
+        {/* Brand Name with Letter Reveal Animation */}
         <div className="mb-8 sm:mb-12 brand-container">
-          <h1 className="font-league text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-wider relative">
+          <h1 className="font-league text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-wider">
             <span className={`brand-text ${animationStarted ? 'animate' : ''} ${textRevealed ? 'revealed' : ''}`}>
               POPPIN
             </span>
-            <div className={`sweep-overlay ${animationStarted ? 'animate' : ''}`}></div>
           </h1>
         </div>
         

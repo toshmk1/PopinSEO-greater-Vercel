@@ -75,45 +75,32 @@
 
   .brand-text {
     color: transparent;
-    background: linear-gradient(90deg, #fdbf00 0%, #fdbf00 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-size: 0% 100%;
-    background-repeat: no-repeat;
-    transition: background-size 2s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    display: inline-block;
   }
 
-  .brand-text.animate {
-    background-size: 100% 100%;
+  .brand-text::after {
+    content: 'POPPIN';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0%;
+    color: #fdbf00;
+    overflow: hidden;
+    white-space: nowrap;
+    transition: width 2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .brand-text.animate::after {
+    width: 100%;
   }
 
   .brand-text.revealed {
     color: #fdbf00;
-    background: none;
-    -webkit-text-fill-color: #fdbf00;
   }
 
-  .sweep-overlay {
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 30%;
-    height: 100%;
-    background: linear-gradient(90deg, 
-      transparent 0%, 
-      rgba(253, 191, 0, 0.8) 30%, 
-      rgba(253, 191, 0, 1) 50%, 
-      rgba(253, 191, 0, 0.8) 70%, 
-      transparent 100%
-    );
-    transition: left 2s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 10;
-    pointer-events: none;
-  }
-
-  .sweep-overlay.animate {
-    left: 100%;
+  .brand-text.revealed::after {
+    display: none;
   }
 }
 
