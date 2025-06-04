@@ -3,19 +3,19 @@ import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
 
 const HeroSection = () => {
+  const [animationStarted, setAnimationStarted] = useState(false);
   const [textRevealed, setTextRevealed] = useState(false);
-  const [gradientComplete, setGradientComplete] = useState(false);
 
   useEffect(() => {
-    // Start the gradient sweep after component mounts
+    // Start the animation after component mounts
     const timer1 = setTimeout(() => {
-      setGradientComplete(true);
+      setAnimationStarted(true);
     }, 500);
 
-    // Reveal the text after gradient sweep
+    // Complete the reveal after animation
     const timer2 = setTimeout(() => {
       setTextRevealed(true);
-    }, 2500);
+    }, 2800);
 
     return () => {
       clearTimeout(timer1);
@@ -26,18 +26,13 @@ const HeroSection = () => {
   return (
     <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
       <div className="text-center max-w-4xl mx-auto">
-        {/* Brand Name with Gradient Animation */}
-        <div className="mb-8 sm:mb-12 relative overflow-hidden">
+        {/* Brand Name with Gradient Sweep Animation */}
+        <div className="mb-8 sm:mb-12 brand-container">
           <h1 className="font-league text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-wider relative">
-            {/* Golden gradient overlay */}
-            <div 
-              className={`absolute inset-0 golden-gradient ${gradientComplete ? 'animate' : ''}`}
-              style={{ zIndex: 1 }}
-            />
-            {/* Text */}
-            <span className={`relative brand-text ${textRevealed ? 'revealed' : ''}`} style={{ zIndex: 2 }}>
+            <span className={`brand-text ${animationStarted ? 'animate' : ''} ${textRevealed ? 'revealed' : ''}`}>
               POPPIN
             </span>
+            <div className={`sweep-overlay ${animationStarted ? 'animate' : ''}`}></div>
           </h1>
         </div>
         
