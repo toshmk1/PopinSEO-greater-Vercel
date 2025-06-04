@@ -131,66 +131,88 @@ const FullScreenStage = ({
 
       {/* Floating Text Content */}
       <motion.div
-        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10 max-w-4xl px-6"
+        className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8"
         style={{ 
           y: textY,
           opacity: textOpacity 
         }}
       >
-        {/* Step Number */}
-        <motion.div 
-          className="inline-flex items-center justify-center w-20 h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-8"
-          initial={{ scale: 0, rotate: 180 }}
-          whileInView={{ scale: 1, rotate: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <span className="text-golden font-league font-bold text-3xl">{step}</span>
-        </motion.div>
-
-        {/* Title */}
-        <motion.h2 
-          className="font-league text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.4 }}
-          viewport={{ once: true }}
-        >
-          {title}
-        </motion.h2>
-
-        {/* Description */}
-        <motion.div
-          className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-white/10"
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          viewport={{ once: true }}
-        >
-          <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed">
-            {description}
-          </p>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        {step < 3 && (
-          <motion.div
-            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2"
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 1 }}
+        <div className="text-center max-w-5xl w-full">
+          {/* Step Number */}
+          <motion.div 
+            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-6 sm:mb-8"
+            initial={{ scale: 0, rotate: 180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
             viewport={{ once: true }}
           >
-            <motion.div
-              animate={{ y: [0, 15, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center text-white/60"
-            >
-              <span className="text-sm mb-2 tracking-wider">SCROLL</span>
-              <div className="w-px h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
-            </motion.div>
+            <span className="text-golden font-league font-bold text-2xl sm:text-3xl">{step}</span>
           </motion.div>
-        )}
+
+          {/* Title */}
+          <motion.h2 
+            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2"
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            {title}
+          </motion.h2>
+
+          {/* Description */}
+          <motion.div
+            className="bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 mx-2 sm:mx-4"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed">
+              {description}
+            </p>
+          </motion.div>
+
+          {/* Scroll Indicator - Hidden on very small screens */}
+          {step < 3 && (
+            <motion.div
+              className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                animate={{ y: [0, 15, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="flex flex-col items-center text-white/60"
+              >
+                <span className="text-xs sm:text-sm mb-2 tracking-wider">SCROLL</span>
+                <div className="w-px h-12 sm:h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
+              </motion.div>
+            </motion.div>
+          )}
+
+          {/* Mobile Swipe Indicator */}
+          {step < 3 && (
+            <motion.div
+              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 block sm:hidden"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8, delay: 1 }}
+              viewport={{ once: true }}
+            >
+              <motion.div
+                animate={{ y: [0, 10, 0] }}
+                transition={{ duration: 2, repeat: Infinity }}
+                className="flex flex-col items-center text-white/60"
+              >
+                <span className="text-xs mb-2 tracking-wider">SWIPE UP</span>
+                <div className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent"></div>
+              </motion.div>
+            </motion.div>
+          )}
+        </div>
       </motion.div>
     </motion.div>
   );
@@ -224,28 +246,28 @@ const HowItWorksSection = () => {
   return (
     <section className="relative">
       {/* Section Header */}
-      <div className="h-screen flex items-center justify-center bg-black relative overflow-hidden">
+      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div 
           ref={ref}
-          className="text-center z-10"
+          className="text-center z-10 max-w-6xl w-full"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex items-center gap-4 mb-8"
+            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="h-px bg-golden w-24"></div>
-            <span className="text-golden font-medium tracking-wider uppercase text-lg">Process</span>
-            <div className="h-px bg-golden w-24"></div>
+            <div className="h-px bg-golden w-12 sm:w-16 md:w-24"></div>
+            <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base md:text-lg">Process</span>
+            <div className="h-px bg-golden w-12 sm:w-16 md:w-24"></div>
           </motion.div>
           
           <motion.h2 
-            className="font-league text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-golden mb-12 relative"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -254,7 +276,7 @@ const HowItWorksSection = () => {
           </motion.h2>
           
           <motion.p 
-            className="text-2xl sm:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-6"
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
@@ -262,9 +284,9 @@ const HowItWorksSection = () => {
             Transform your agency in 3 simple stages
           </motion.p>
 
-          {/* Scroll Indicator */}
+          {/* Desktop Scroll Indicator */}
           <motion.div
-            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+            className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-1/2 transform -translate-x-1/2 hidden sm:block"
             initial={{ opacity: 0 }}
             animate={isInView ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
@@ -274,8 +296,25 @@ const HowItWorksSection = () => {
               transition={{ duration: 2, repeat: Infinity }}
               className="flex flex-col items-center text-golden/60"
             >
-              <span className="text-sm mb-4 tracking-wider">SCROLL TO EXPLORE</span>
-              <div className="w-px h-20 bg-gradient-to-b from-golden/60 to-transparent"></div>
+              <span className="text-xs sm:text-sm mb-3 sm:mb-4 tracking-wider">SCROLL TO EXPLORE</span>
+              <div className="w-px h-16 sm:h-20 bg-gradient-to-b from-golden/60 to-transparent"></div>
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile Swipe Indicator */}
+          <motion.div
+            className="absolute bottom-8 left-1/2 transform -translate-x-1/2 block sm:hidden"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-golden/60"
+            >
+              <span className="text-xs mb-2 tracking-wider">SWIPE UP</span>
+              <div className="w-px h-12 bg-gradient-to-b from-golden/60 to-transparent"></div>
             </motion.div>
           </motion.div>
         </motion.div>
@@ -294,17 +333,17 @@ const HowItWorksSection = () => {
       ))}
 
       {/* Bottom CTA Section */}
-      <div className="h-screen flex items-center justify-center bg-black relative">
+      <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8">
         <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
         <motion.div
-          className="text-center z-10"
+          className="text-center z-10 max-w-4xl w-full"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: true }}
         >
           <motion.h3
-            className="font-league text-4xl sm:text-5xl md:text-6xl font-bold text-golden mb-8"
+            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-golden mb-6 sm:mb-8 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -313,7 +352,7 @@ const HowItWorksSection = () => {
             Ready to Scale?
           </motion.h3>
           <motion.p
-            className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto px-6"
+            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -330,7 +369,7 @@ const HowItWorksSection = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             viewport={{ once: true }}
           >
-            <button className="bg-golden text-black font-semibold text-xl px-12 py-5 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20 border-2 border-golden/20 hover:border-golden">
+            <button className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-sm">
               Start Your Transformation
             </button>
           </motion.div>
