@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import stage1Svg from "/src/images/stage1.svg?url";
+import stage2Svg from "/src/images/stage2.svg?url";
+import stage3Svg from "/src/images/stage3.svg?url";
 
 const HeroSection = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -157,19 +160,19 @@ const HowItWorksSection = () => {
     {
       title: "The Basics",
       description: "Your agency relies on recruiters and social media to attract both fans and creators. It works—but it's manual, time-consuming, and not built to scale.",
-      imageSrc: "/src/images/stage1.svg",
+      imageSrc: stage1Svg,
       imageAlt: "Stage 1: Basic agency operations with house and few girls"
     },
     {
       title: "This Is Where We Step In",
       description: "After our initial SEO work, you start getting organic creator applications. Your agency gains social proof, and creators start to notice. You're no longer chasing—you're being found.",
-      imageSrc: "/src/images/stage2.svg",
+      imageSrc: stage2Svg,
       imageAlt: "Stage 2: Mansion with pool and queue of girls wanting to join"
     },
     {
       title: "Scale on Autopilot",
       description: "Creators are lining up to join, and you have passive fan traffic flowing to every girl on your roster. You've built a system that grows itself.",
-      imageSrc: "/src/images/stage3.svg",
+      imageSrc: stage3Svg,
       imageAlt: "Stage 3: Fans in queue to girls, automated scaling system"
     }
   ];
