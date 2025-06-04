@@ -157,20 +157,20 @@ const HowItWorksSection = () => {
     {
       title: "The Basics",
       description: "Your agency relies on recruiters and social media to attract both fans and creators. It works—but it's manual, time-consuming, and not built to scale.",
-      imageSrc: "https://images.unsplash.com/photo-1556761175-b413da4baf72?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600",
-      imageAlt: "Modern office with young professionals working"
+      imageSrc: "/src/images/stage 1.jpg",
+      imageAlt: "Stage 1: Basic agency operations with house and few girls"
     },
     {
       title: "This Is Where We Step In",
       description: "After our initial SEO work, you start getting organic creator applications. Your agency gains social proof, and creators start to notice. You're no longer chasing—you're being found.",
-      imageSrc: "https://images.unsplash.com/photo-1613490493576-7fde63acd811?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600",
-      imageAlt: "Luxury mansion with pool and modern architecture"
+      imageSrc: "/src/images/stage 2.jpg",
+      imageAlt: "Stage 2: Mansion with pool and queue of girls wanting to join"
     },
     {
       title: "Scale on Autopilot",
       description: "Creators are lining up to join, and you have passive fan traffic flowing to every girl on your roster. You've built a system that grows itself.",
-      imageSrc: "https://images.unsplash.com/photo-1556745753-b2904692b3cd?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1000&h=600",
-      imageAlt: "Business growth chart with upward trending arrows"
+      imageSrc: "/src/images/stage 3.jpg",
+      imageAlt: "Stage 3: Fans in queue to girls, automated scaling system"
     }
   ];
 
