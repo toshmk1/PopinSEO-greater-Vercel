@@ -62,6 +62,11 @@
     font-family: 'Inter', system-ui, -apple-system, sans-serif;
   }
 
+  html {
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+
   .font-league {
     font-family: 'League Gothic', Arial, sans-serif;
   }
@@ -119,6 +124,16 @@
 
   .hover\:bg-golden:hover {
     background-color: #e6ac00;
+  }
+
+  .snap-section {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  .snap-container {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
   }
 }
 

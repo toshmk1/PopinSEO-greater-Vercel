@@ -24,7 +24,7 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8">
+    <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8 snap-section">
       <div className="text-center max-w-4xl mx-auto">
         {/* Brand Name with Letter Reveal Animation */}
         <div className="mb-8 sm:mb-12 brand-container">
@@ -110,7 +110,7 @@ const FullScreenStage = ({
   return (
     <motion.div 
       ref={ref}
-      className="relative h-screen w-full overflow-hidden"
+      className="relative h-screen w-full overflow-hidden snap-section"
     >
       {/* Full Screen Image */}
       <motion.div
@@ -246,7 +246,7 @@ const HowItWorksSection = () => {
   return (
     <section className="relative">
       {/* Section Header */}
-      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div 
           ref={ref}
@@ -333,7 +333,7 @@ const HowItWorksSection = () => {
       ))}
 
       {/* Bottom CTA Section */}
-      <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8">
+      <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
         <motion.div
           className="text-center z-10 max-w-4xl w-full"
