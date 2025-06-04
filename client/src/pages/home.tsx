@@ -83,161 +83,115 @@ const HeroSection = () => {
   );
 };
 
-const StepCard = ({ 
+const FullScreenStage = ({ 
   step, 
   title, 
   description, 
   imageSrc, 
-  imageAlt, 
-  reverse = false 
+  imageAlt 
 }: {
   step: number;
   title: string;
   description: string;
   imageSrc: string;
   imageAlt: string;
-  reverse?: boolean;
 }) => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
   const { scrollYProgress } = useScroll({
     target: ref,
     offset: ["start end", "end start"]
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.8, 1, 1.1]);
-  const textOpacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0.8]);
+  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 0.8]);
+  const imageY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const textY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
+  const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
   return (
     <motion.div 
       ref={ref}
-      className="relative mb-32 sm:mb-48 group"
-      initial={{ opacity: 0, y: 100 }}
-      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 100 }}
-      transition={{ 
-        duration: 1, 
-        delay: step * 0.2,
-        ease: [0.25, 0.25, 0.25, 0.75]
-      }}
+      className="relative h-screen w-full overflow-hidden"
     >
-      {/* Step Number */}
-      <motion.div 
-        className="absolute -top-8 left-1/2 transform -translate-x-1/2 z-20"
-        initial={{ scale: 0, rotate: -180 }}
-        animate={isInView ? { scale: 1, rotate: 0 } : { scale: 0, rotate: -180 }}
-        transition={{ duration: 0.8, delay: step * 0.2 + 0.3 }}
+      {/* Full Screen Image */}
+      <motion.div
+        className="absolute inset-0"
+        style={{ 
+          scale: imageScale,
+          y: imageY,
+        }}
       >
-        <div className="w-16 h-16 bg-golden rounded-full flex items-center justify-center shadow-lg border-4 border-black">
-          <span className="text-black font-league font-bold text-2xl">{step}</span>
-        </div>
+        <img 
+          src={imageSrc}
+          alt={imageAlt}
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
       </motion.div>
 
-      <div className={`grid lg:grid-cols-2 gap-16 sm:gap-20 items-center ${reverse ? 'lg:grid-flow-col-dense' : ''}`}>
-        {/* Image Section */}
+      {/* Floating Text Content */}
+      <motion.div
+        className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-center z-10 max-w-4xl px-6"
+        style={{ 
+          y: textY,
+          opacity: textOpacity 
+        }}
+      >
+        {/* Step Number */}
         <motion.div 
-          className={`relative ${reverse ? 'lg:col-start-2' : ''}`}
-          style={{ y }}
+          className="inline-flex items-center justify-center w-20 h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-8"
+          initial={{ scale: 0, rotate: 180 }}
+          whileInView={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
         >
-          <motion.div
-            className="relative overflow-hidden rounded-3xl shadow-2xl group-hover:shadow-golden/20 transition-all duration-500"
-            style={{ scale: imageScale }}
-            whileHover={{ scale: 1.05, rotateY: 5 }}
-            transition={{ duration: 0.3 }}
-          >
-            <img 
-              src={imageSrc}
-              alt={imageAlt}
-              className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-110"
-              style={{ aspectRatio: '16/10' }}
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
-          </motion.div>
-          
-          {/* Floating Elements */}
-          <motion.div
-            className="absolute -top-6 -right-6 w-12 h-12 bg-golden/20 rounded-full blur-xl"
-            animate={{ 
-              scale: [1, 1.5, 1],
-              opacity: [0.3, 0.8, 0.3]
-            }}
-            transition={{ 
-              duration: 3,
-              repeat: Infinity,
-              delay: step * 0.5
-            }}
-          />
-          <motion.div
-            className="absolute -bottom-4 -left-4 w-8 h-8 bg-golden/30 rounded-full blur-lg"
-            animate={{ 
-              scale: [1, 1.3, 1],
-              opacity: [0.4, 0.9, 0.4]
-            }}
-            transition={{ 
-              duration: 2.5,
-              repeat: Infinity,
-              delay: step * 0.3
-            }}
-          />
+          <span className="text-golden font-league font-bold text-3xl">{step}</span>
         </motion.div>
-        
-        {/* Content Section */}
-        <motion.div 
-          className={`${reverse ? 'lg:col-start-1' : ''}`}
-          style={{ opacity: textOpacity }}
-        >
-          <motion.div 
-            className="relative bg-gradient-to-br from-card/80 to-card/40 p-10 sm:p-12 rounded-3xl backdrop-blur-md border border-golden/20 shadow-xl hover:shadow-golden/10 transition-all duration-500 group-hover:border-golden/40"
-            whileHover={{ y: -10 }}
-            transition={{ duration: 0.3 }}
-          >
-            {/* Background Pattern */}
-            <div className="absolute inset-0 bg-gradient-to-r from-golden/5 to-transparent rounded-3xl"></div>
-            
-            <motion.h3 
-              className="font-league text-4xl sm:text-5xl md:text-6xl font-bold text-golden mb-8 relative"
-              initial={{ opacity: 0, x: reverse ? 50 : -50 }}
-              animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: reverse ? 50 : -50 }}
-              transition={{ duration: 0.8, delay: step * 0.2 + 0.4 }}
-            >
-              {title}
-              <motion.div
-                className="absolute -bottom-2 left-0 h-1 bg-golden rounded-full"
-                initial={{ width: 0 }}
-                animate={isInView ? { width: "60%" } : { width: 0 }}
-                transition={{ duration: 1, delay: step * 0.2 + 0.8 }}
-              />
-            </motion.h3>
-            
-            <motion.p 
-              className="text-lg sm:text-xl text-gray-300 leading-relaxed relative"
-              initial={{ opacity: 0, y: 30 }}
-              animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-              transition={{ duration: 0.8, delay: step * 0.2 + 0.6 }}
-            >
-              {description}
-            </motion.p>
 
-            {/* Decorative Arrow */}
-            {step < 3 && (
-              <motion.div
-                className="absolute -bottom-16 left-1/2 transform -translate-x-1/2"
-                initial={{ opacity: 0, y: -20 }}
-                animate={isInView ? { opacity: 0.6, y: 0 } : { opacity: 0, y: -20 }}
-                transition={{ duration: 0.8, delay: step * 0.2 + 1 }}
-              >
-                <motion.div
-                  animate={{ y: [0, 10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-golden text-3xl"
-                >
-                  ↓
-                </motion.div>
-              </motion.div>
-            )}
-          </motion.div>
+        {/* Title */}
+        <motion.h2 
+          className="font-league text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-8 leading-tight"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {title}
+        </motion.h2>
+
+        {/* Description */}
+        <motion.div
+          className="bg-black/30 backdrop-blur-md rounded-2xl p-8 border border-white/10"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-xl sm:text-2xl text-gray-200 leading-relaxed">
+            {description}
+          </p>
         </motion.div>
-      </div>
+
+        {/* Scroll Indicator */}
+        {step < 3 && (
+          <motion.div
+            className="absolute -bottom-20 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-white/60"
+            >
+              <span className="text-sm mb-2 tracking-wider">SCROLL</span>
+              <div className="w-px h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.div>
     </motion.div>
   );
 };
@@ -268,18 +222,13 @@ const HowItWorksSection = () => {
   ];
 
   return (
-    <section ref={ref} className="relative py-32 sm:py-40 px-4 sm:px-6 lg:px-8 overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-1/4 left-0 w-72 h-72 bg-golden/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-1/4 right-0 w-96 h-96 bg-golden/3 rounded-full blur-3xl"></div>
-      </div>
-      
-      <div className="max-w-7xl mx-auto relative z-10">
-        
-        {/* Section Header */}
+    <section className="relative">
+      {/* Section Header */}
+      <div className="h-screen flex items-center justify-center bg-black relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div 
-          className="text-center mb-24 sm:mb-32"
+          ref={ref}
+          className="text-center z-10"
           initial={{ opacity: 0, y: 50 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
           transition={{ duration: 1 }}
@@ -290,111 +239,99 @@ const HowItWorksSection = () => {
             animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            <div className="h-px bg-golden w-16"></div>
-            <span className="text-golden font-medium tracking-wider uppercase text-sm">Process</span>
-            <div className="h-px bg-golden w-16"></div>
+            <div className="h-px bg-golden w-24"></div>
+            <span className="text-golden font-medium tracking-wider uppercase text-lg">Process</span>
+            <div className="h-px bg-golden w-24"></div>
           </motion.div>
           
           <motion.h2 
-            className="font-league text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-golden mb-8 relative"
+            className="font-league text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-bold text-golden mb-12 relative"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
           >
             How It Works
-            <motion.div
-              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-2 bg-golden rounded-full"
-              initial={{ width: 0 }}
-              animate={isInView ? { width: "50%" } : { width: 0 }}
-              transition={{ duration: 1.2, delay: 0.8 }}
-            />
           </motion.h2>
           
           <motion.p 
-            className="text-xl sm:text-2xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            className="text-2xl sm:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed px-6"
             initial={{ opacity: 0, y: 20 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.8, delay: 0.6 }}
           >
-            From basic agency operations to scaled autopilot growth
-            <br />
-            <span className="text-golden font-medium">Transform your agency in 3 simple stages</span>
+            Transform your agency in 3 simple stages
           </motion.p>
+
+          {/* Scroll Indicator */}
+          <motion.div
+            className="absolute bottom-20 left-1/2 transform -translate-x-1/2"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <motion.div
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-golden/60"
+            >
+              <span className="text-sm mb-4 tracking-wider">SCROLL TO EXPLORE</span>
+              <div className="w-px h-20 bg-gradient-to-b from-golden/60 to-transparent"></div>
+            </motion.div>
+          </motion.div>
         </motion.div>
+      </div>
 
-        {/* Progress Timeline */}
-        <motion.div 
-          className="relative mb-20"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 1, delay: 0.8 }}
-        >
-          <div className="flex justify-center items-center space-x-8 sm:space-x-16">
-            {[1, 2, 3].map((num, index) => (
-              <motion.div
-                key={num}
-                className="flex items-center"
-                initial={{ opacity: 0, scale: 0 }}
-                animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
-                transition={{ duration: 0.6, delay: 1 + index * 0.2 }}
-              >
-                <div className="relative">
-                  <div className="w-4 h-4 bg-golden rounded-full"></div>
-                  <motion.div
-                    className="absolute inset-0 bg-golden rounded-full"
-                    animate={{ 
-                      scale: [1, 1.5, 1],
-                      opacity: [0.8, 0.3, 0.8]
-                    }}
-                    transition={{ 
-                      duration: 2,
-                      repeat: Infinity,
-                      delay: index * 0.5
-                    }}
-                  />
-                </div>
-                {index < 2 && (
-                  <motion.div
-                    className="w-16 sm:w-24 h-px bg-golden/30 ml-4"
-                    initial={{ scaleX: 0 }}
-                    animate={isInView ? { scaleX: 1 } : { scaleX: 0 }}
-                    transition={{ duration: 0.8, delay: 1.2 + index * 0.3 }}
-                  />
-                )}
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
+      {/* Full Screen Stages */}
+      {steps.map((step, index) => (
+        <FullScreenStage
+          key={index}
+          step={index + 1}
+          title={step.title}
+          description={step.description}
+          imageSrc={step.imageSrc}
+          imageAlt={step.imageAlt}
+        />
+      ))}
 
-        {/* Steps */}
-        <div className="space-y-0">
-          {steps.map((step, index) => (
-            <StepCard
-              key={index}
-              step={index + 1}
-              title={step.title}
-              description={step.description}
-              imageSrc={step.imageSrc}
-              imageAlt={step.imageAlt}
-              reverse={index % 2 === 1}
-            />
-          ))}
-        </div>
-
-        {/* Bottom CTA */}
+      {/* Bottom CTA Section */}
+      <div className="h-screen flex items-center justify-center bg-black relative">
+        <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
         <motion.div
-          className="text-center mt-32"
+          className="text-center z-10"
           initial={{ opacity: 0, y: 50 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
-          transition={{ duration: 0.8, delay: 1.5 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          viewport={{ once: true }}
         >
+          <motion.h3
+            className="font-league text-4xl sm:text-5xl md:text-6xl font-bold text-golden mb-8"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            viewport={{ once: true }}
+          >
+            Ready to Scale?
+          </motion.h3>
+          <motion.p
+            className="text-xl text-gray-300 mb-12 max-w-2xl mx-auto px-6"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            Let's transform your agency into an automated growth machine
+          </motion.p>
           <motion.div
             className="inline-block"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
           >
-            <button className="bg-golden text-black font-semibold text-lg px-10 py-4 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20">
-              Ready to Scale? Let's Talk
+            <button className="bg-golden text-black font-semibold text-xl px-12 py-5 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20 border-2 border-golden/20 hover:border-golden">
+              Start Your Transformation
             </button>
           </motion.div>
         </motion.div>
