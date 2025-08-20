@@ -218,6 +218,226 @@ const FullScreenStage = ({
   );
 };
 
+const WhyChooseUsCard = ({ 
+  title, 
+  description, 
+  index 
+}: {
+  title: string;
+  description: string;
+  index: number;
+}) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [100, -100]);
+  const opacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0.8, 1, 1, 0.9]);
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="h-screen flex items-center justify-center relative snap-section"
+      style={{ y, opacity }}
+    >
+      {/* Background Gradient */}
+      <div className="absolute inset-0 bg-gradient-to-br from-golden/10 via-black to-golden/5"></div>
+      
+      {/* Floating Background Elements */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-64 h-64 bg-golden/5 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.3, 0.6, 0.3]
+        }}
+        transition={{ 
+          duration: 4,
+          repeat: Infinity,
+          delay: index * 0.5
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 w-48 h-48 bg-golden/3 rounded-full blur-2xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.2, 0.5, 0.2]
+        }}
+        transition={{ 
+          duration: 3,
+          repeat: Infinity,
+          delay: index * 0.3
+        }}
+      />
+
+      {/* Content */}
+      <motion.div
+        className="text-center max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 z-10"
+        style={{ scale }}
+      >
+        {/* Index Number */}
+        <motion.div 
+          className="inline-flex items-center justify-center w-20 h-20 sm:w-24 sm:h-24 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-8 sm:mb-12"
+          initial={{ scale: 0, rotate: 180 }}
+          whileInView={{ scale: 1, rotate: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          viewport={{ once: true }}
+        >
+          <span className="text-golden font-league font-bold text-2xl sm:text-3xl">{index}</span>
+        </motion.div>
+
+        {/* Title */}
+        <motion.h3 
+          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold text-white mb-8 sm:mb-12 leading-tight"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1, delay: 0.4 }}
+          viewport={{ once: true }}
+        >
+          {title}
+        </motion.h3>
+
+        {/* Description */}
+        <motion.div
+          className="bg-black/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-8 sm:p-12 border border-white/10 max-w-4xl mx-auto"
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+          viewport={{ once: true }}
+        >
+          <p className="text-xl sm:text-2xl md:text-3xl text-gray-200 leading-relaxed">
+            {description}
+          </p>
+        </motion.div>
+
+        {/* Animated Arrow */}
+        {index < 4 && (
+          <motion.div
+            className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            viewport={{ once: true }}
+          >
+            <motion.div
+              animate={{ y: [0, 15, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-golden/60"
+            >
+              <span className="text-xs mb-2 tracking-wider">CONTINUE</span>
+              <div className="w-px h-12 bg-gradient-to-b from-golden/60 to-transparent"></div>
+            </motion.div>
+          </motion.div>
+        )}
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const WhyChooseUsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const benefits = [
+    {
+      title: "Creators Apply to You",
+      description: "No more DMs or chasing. With strong SEO, high-quality creators start finding you. They apply directly—without you lifting a finger."
+    },
+    {
+      title: "Turn Applications Into Revenue", 
+      description: "Don't just scale—monetise. Extra model applications can be sold, referred, or passed on to other agencies. It's a new income stream built on traffic you already own."
+    },
+    {
+      title: "Instant Social Proof",
+      description: "When creators see your name everywhere, trust builds fast. Ranking on Google = instant authority. That makes it easier to attract top talent and partners."
+    },
+    {
+      title: "Premium Fan Traffic, on Autopilot",
+      description: "Want USA, UK, and CA fans for your models? We send B2C traffic from high-intent searches straight to your roster. Like Tinder—but organic. Just one safe-for-work photo is enough."
+    }
+  ];
+
+  return (
+    <section className="relative">
+      {/* Section Header */}
+      <div className="h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/8 to-transparent"></div>
+        <motion.div 
+          ref={ref}
+          className="text-center z-10 max-w-6xl w-full"
+          initial={{ opacity: 0, y: 50 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+          transition={{ duration: 1 }}
+        >
+          <motion.div
+            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="h-px bg-golden w-12 sm:w-16 md:w-24"></div>
+            <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base md:text-lg">Benefits</span>
+            <div className="h-px bg-golden w-12 sm:w-16 md:w-24"></div>
+          </motion.div>
+          
+          <motion.h2 
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            Why Choose Us
+            <motion.div
+              className="absolute -bottom-4 left-1/2 transform -translate-x-1/2 h-2 bg-golden rounded-full"
+              initial={{ width: 0 }}
+              animate={isInView ? { width: "40%" } : { width: 0 }}
+              transition={{ duration: 1.2, delay: 0.8 }}
+            />
+          </motion.h2>
+          
+          <motion.p 
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            Four game-changing advantages that set us apart
+          </motion.p>
+
+          {/* Desktop Scroll Indicator */}
+          <motion.div
+            className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-1/2 transform -translate-x-1/2 hidden sm:block"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            <motion.div
+              animate={{ y: [0, 20, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="flex flex-col items-center text-golden/60"
+            >
+              <span className="text-xs sm:text-sm mb-3 sm:mb-4 tracking-wider">DISCOVER MORE</span>
+              <div className="w-px h-16 sm:h-20 bg-gradient-to-b from-golden/60 to-transparent"></div>
+            </motion.div>
+          </motion.div>
+        </motion.div>
+      </div>
+
+      {/* Benefit Cards */}
+      {benefits.map((benefit, index) => (
+        <WhyChooseUsCard
+          key={index}
+          title={benefit.title}
+          description={benefit.description}
+          index={index + 1}
+        />
+      ))}
+    </section>
+  );
+};
+
 const HowItWorksSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
@@ -384,6 +604,7 @@ export default function Home() {
     <div className="bg-black text-white overflow-x-hidden">
       <HeroSection />
       <HowItWorksSection />
+      <WhyChooseUsSection />
     </div>
   );
 }
