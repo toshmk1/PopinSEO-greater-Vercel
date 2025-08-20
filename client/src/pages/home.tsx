@@ -1,9 +1,6 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import stage1Image from "@assets/stage 1.jpg";
-import stage2Image from "@assets/stage 2.jpg";
-import stage3Image from "@assets/stage 3.jpg";
 
 const HeroSection = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -90,14 +87,14 @@ const FullScreenStage = ({
   step, 
   title, 
   description, 
-  imageSrc, 
-  imageAlt 
+  gradient,
+  icon
 }: {
   step: number;
   title: string;
   description: string;
-  imageSrc: string;
-  imageAlt: string;
+  gradient: string;
+  icon: string;
 }) => {
   const ref = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -105,8 +102,7 @@ const FullScreenStage = ({
     offset: ["start end", "end start"]
   });
 
-  const imageScale = useTransform(scrollYProgress, [0, 0.5, 1], [1.2, 1, 0.8]);
-  const imageY = useTransform(scrollYProgress, [0, 1], [0, -200]);
+  const backgroundY = useTransform(scrollYProgress, [0, 1], [0, -100]);
   const textY = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [100, 0, 0, -100]);
   const textOpacity = useTransform(scrollYProgress, [0, 0.2, 0.8, 1], [0, 1, 1, 0]);
 
@@ -115,21 +111,13 @@ const FullScreenStage = ({
       ref={ref}
       className="relative h-screen w-full overflow-hidden snap-section"
     >
-      {/* Full Screen Image */}
+      {/* Dynamic Background */}
       <motion.div
-        className="absolute inset-0"
-        style={{ 
-          scale: imageScale,
-          y: imageY,
-        }}
+        className={`absolute inset-0 bg-gradient-to-br ${gradient}`}
+        style={{ y: backgroundY }}
       >
-        <img 
-          src={imageSrc}
-          alt={imageAlt}
-          className="w-full h-full object-cover"
-        />
-        <div className="absolute inset-0 bg-black/40"></div>
-        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/60"></div>
+        <div className="absolute inset-0 bg-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/80"></div>
       </motion.div>
 
       {/* Floating Text Content */}
@@ -152,12 +140,23 @@ const FullScreenStage = ({
             <span className="text-golden font-league font-bold text-2xl sm:text-3xl">{step}</span>
           </motion.div>
 
+          {/* Icon */}
+          <motion.div
+            className="text-6xl sm:text-7xl md:text-8xl mb-6 sm:mb-8"
+            initial={{ scale: 0, rotate: -180 }}
+            whileInView={{ scale: 1, rotate: 0 }}
+            transition={{ duration: 1, delay: 0.4 }}
+            viewport={{ once: true }}
+          >
+            {icon}
+          </motion.div>
+
           {/* Title */}
           <motion.h2 
             className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1, delay: 0.4 }}
+            transition={{ duration: 1, delay: 0.6 }}
             viewport={{ once: true }}
           >
             {title}
@@ -168,7 +167,7 @@ const FullScreenStage = ({
             className="bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 mx-2 sm:mx-4"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
             viewport={{ once: true }}
           >
             <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-gray-200 leading-relaxed">
@@ -229,20 +228,20 @@ const HowItWorksSection = () => {
     {
       title: "The Basics",
       description: "Your agency relies on recruiters and social media to attract both fans and creators. It works—but it's manual, time-consuming, and not built to scale.",
-      imageSrc: stage1Image,
-      imageAlt: "Stage 1: Basic agency operations with house and few girls"
+      gradient: "from-red-900/30 to-orange-800/30",
+      icon: "🏠"
     },
     {
       title: "This Is Where We Step In",
       description: "After our initial SEO work, you start getting organic creator applications. Your agency gains social proof, and creators start to notice. You're no longer chasing—you're being found.",
-      imageSrc: stage2Image,
-      imageAlt: "Stage 2: Mansion with pool and queue of girls wanting to join"
+      gradient: "from-golden/30 to-yellow-600/30",
+      icon: "🚀"
     },
     {
       title: "Scale on Autopilot",
       description: "Creators are lining up to join, and you have passive fan traffic flowing to every girl on your roster. You've built a system that grows itself.",
-      imageSrc: stage3Image,
-      imageAlt: "Stage 3: Fans in queue to girls, automated scaling system"
+      gradient: "from-green-800/30 to-emerald-700/30",
+      icon: "⚡"
     }
   ];
 
@@ -330,8 +329,8 @@ const HowItWorksSection = () => {
           step={index + 1}
           title={step.title}
           description={step.description}
-          imageSrc={step.imageSrc}
-          imageAlt={step.imageAlt}
+          gradient={step.gradient}
+          icon={step.icon}
         />
       ))}
     </section>
