@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import stage1 from "@/images/stage 1.jpg";
+import stage2 from "@/images/stage 2.jpg";
+import stage3 from "@/images/stage 3.jpg";
 
 const HeroSection = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -446,19 +449,19 @@ const HowItWorksSection = () => {
     {
       title: "The Basics",
       description: "Your agency relies on recruiters and social media to attract both fans and creators. It works—but it's manual, time-consuming, and not built to scale.",
-      imageSrc: "/src/images/stage 1.jpg",
+      imageSrc: stage1,
       imageAlt: "Stage 1: Basic agency operations with house and few girls"
     },
     {
       title: "This Is Where We Step In",
       description: "After our initial SEO work, you start getting organic creator applications. Your agency gains social proof, and creators start to notice. You're no longer chasing—you're being found.",
-      imageSrc: "/src/images/stage 2.jpg",
+      imageSrc: stage2,
       imageAlt: "Stage 2: Mansion with pool and queue of girls wanting to join"
     },
     {
       title: "Scale on Autopilot",
       description: "Creators are lining up to join, and you have passive fan traffic flowing to every girl on your roster. You've built a system that grows itself.",
-      imageSrc: "/src/images/stage 3.jpg",
+      imageSrc: stage3,
       imageAlt: "Stage 3: Fans in queue to girls, automated scaling system"
     }
   ];
@@ -552,50 +555,113 @@ const HowItWorksSection = () => {
         />
       ))}
 
-      {/* Bottom CTA Section */}
-      <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section">
-        <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
-        <motion.div
-          className="text-center z-10 max-w-4xl w-full"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.h3
-            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-golden mb-6 sm:mb-8 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Ready to Scale?
-          </motion.h3>
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Let's transform your agency into an automated growth machine
-          </motion.p>
-          <motion.div
-            className="inline-block"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <button className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-sm">
-              Start Your Transformation
-            </button>
-          </motion.div>
-        </motion.div>
-      </div>
+
     </section>
+  );
+};
+
+const ReadyToScaleSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section">
+      <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
+      
+      {/* Floating Background Elements */}
+      <motion.div
+        className="absolute top-1/4 left-1/4 w-96 h-96 bg-golden/8 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{ 
+          duration: 6,
+          repeat: Infinity
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-golden/6 rounded-full blur-2xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.4, 0.2]
+        }}
+        transition={{ 
+          duration: 4,
+          repeat: Infinity,
+          delay: 1
+        }}
+      />
+
+      <motion.div
+        ref={ref}
+        className="text-center z-10 max-w-6xl w-full"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Title */}
+        <motion.h2
+          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          Ready to Scale?
+        </motion.h2>
+        
+        {/* Description */}
+        <motion.p
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-12 sm:mb-16 max-w-5xl mx-auto leading-relaxed"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          Let's transform your agency into an automated growth machine
+        </motion.p>
+        
+        {/* CTA Button */}
+        <motion.div
+          className="inline-block"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          <motion.button 
+            className="bg-golden text-black font-league font-bold text-xl sm:text-2xl md:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-8 rounded-2xl hover:bg-golden/90 transition-all duration-300 shadow-2xl hover:shadow-golden/30 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-lg"
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 25px 50px -12px rgba(253, 191, 0, 0.4)"
+            }}
+            whileTap={{ scale: 0.95 }}
+          >
+            Start Your Transformation
+          </motion.button>
+        </motion.div>
+
+        {/* Decorative Elements */}
+        <motion.div
+          className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 0.8 }}
+        >
+          <div className="h-px bg-gradient-to-r from-transparent via-golden/40 to-transparent w-24 sm:w-32 md:w-48"></div>
+          <motion.div
+            className="w-3 h-3 bg-golden rounded-full"
+            animate={{ 
+              scale: [1, 1.5, 1],
+              opacity: [0.6, 1, 0.6]
+            }}
+            transition={{ 
+              duration: 2,
+              repeat: Infinity
+            }}
+          />
+          <div className="h-px bg-gradient-to-r from-transparent via-golden/40 to-transparent w-24 sm:w-32 md:w-48"></div>
+        </motion.div>
+      </motion.div>
+    </div>
   );
 };
 
@@ -605,6 +671,7 @@ export default function Home() {
       <HeroSection />
       <HowItWorksSection />
       <WhyChooseUsSection />
+      <ReadyToScaleSection />
     </div>
   );
 }
