@@ -1,6 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useInView } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import stage1Image from "@assets/stage 1.jpg";
+import stage2Image from "@assets/stage 2.jpg";
+import stage3Image from "@assets/stage 3.jpg";
 
 const HeroSection = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
@@ -226,19 +229,19 @@ const HowItWorksSection = () => {
     {
       title: "The Basics",
       description: "Your agency relies on recruiters and social media to attract both fans and creators. It works—but it's manual, time-consuming, and not built to scale.",
-      imageSrc: "/src/images/stage 1.jpg",
+      imageSrc: stage1Image,
       imageAlt: "Stage 1: Basic agency operations with house and few girls"
     },
     {
       title: "This Is Where We Step In",
       description: "After our initial SEO work, you start getting organic creator applications. Your agency gains social proof, and creators start to notice. You're no longer chasing—you're being found.",
-      imageSrc: "/src/images/stage 2.jpg",
+      imageSrc: stage2Image,
       imageAlt: "Stage 2: Mansion with pool and queue of girls wanting to join"
     },
     {
       title: "Scale on Autopilot",
       description: "Creators are lining up to join, and you have passive fan traffic flowing to every girl on your roster. You've built a system that grows itself.",
-      imageSrc: "/src/images/stage 3.jpg",
+      imageSrc: stage3Image,
       imageAlt: "Stage 3: Fans in queue to girls, automated scaling system"
     }
   ];
@@ -331,50 +334,6 @@ const HowItWorksSection = () => {
           imageAlt={step.imageAlt}
         />
       ))}
-
-      {/* Bottom CTA Section */}
-      <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section">
-        <div className="absolute inset-0 bg-gradient-to-r from-golden/5 via-transparent to-golden/5"></div>
-        <motion.div
-          className="text-center z-10 max-w-4xl w-full"
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8 }}
-          viewport={{ once: true }}
-        >
-          <motion.h3
-            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-golden mb-6 sm:mb-8 leading-tight"
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            viewport={{ once: true }}
-          >
-            Ready to Scale?
-          </motion.h3>
-          <motion.p
-            className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-3xl mx-auto leading-relaxed"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true }}
-          >
-            Let's transform your agency into an automated growth machine
-          </motion.p>
-          <motion.div
-            className="inline-block"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <button className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-5 rounded-xl hover:bg-golden/90 transition-all duration-300 shadow-lg hover:shadow-golden/20 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-sm">
-              Start Your Transformation
-            </button>
-          </motion.div>
-        </motion.div>
-      </div>
     </section>
   );
 };
@@ -553,10 +512,10 @@ const BenefitCard = ({
           opacity: textOpacity 
         }}
       >
-        <div className={`text-center max-w-5xl w-full ${reverse ? 'lg:text-right' : 'lg:text-left'}`}>
+        <div className="text-center max-w-5xl w-full relative">
           {/* Index Number */}
           <motion.div 
-            className={`inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-6 sm:mb-8 ${reverse ? 'lg:float-right lg:mr-0' : 'lg:float-left lg:ml-0'}`}
+            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-6 sm:mb-8"
             initial={{ scale: 0, rotate: 180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -589,7 +548,7 @@ const BenefitCard = ({
 
           {/* Description */}
           <motion.div
-            className="bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 mx-2 sm:mx-4 max-w-4xl lg:mx-auto"
+            className="bg-black/40 backdrop-blur-md rounded-xl sm:rounded-2xl p-6 sm:p-8 border border-white/10 mx-2 sm:mx-4 max-w-4xl mx-auto mb-16 sm:mb-20"
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -599,11 +558,14 @@ const BenefitCard = ({
               {description}
             </p>
           </motion.div>
+        </div>
 
-          {/* Scroll Indicator - Hidden on very small screens */}
-          {index < 4 && (
+        {/* Scroll Indicators - Outside the main content to avoid overlap */}
+        {index < 4 && (
+          <>
+            {/* Desktop Scroll Indicator */}
             <motion.div
-              className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+              className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block z-20"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -618,12 +580,10 @@ const BenefitCard = ({
                 <div className="w-px h-12 sm:h-16 bg-gradient-to-b from-white/60 to-transparent"></div>
               </motion.div>
             </motion.div>
-          )}
 
-          {/* Mobile Swipe Indicator */}
-          {index < 4 && (
+            {/* Mobile Swipe Indicator */}
             <motion.div
-              className="absolute bottom-8 left-1/2 transform -translate-x-1/2 block sm:hidden"
+              className="absolute bottom-6 left-1/2 transform -translate-x-1/2 block sm:hidden z-20"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1.2 }}
@@ -638,8 +598,8 @@ const BenefitCard = ({
                 <div className="w-px h-8 bg-gradient-to-b from-white/60 to-transparent"></div>
               </motion.div>
             </motion.div>
-          )}
-        </div>
+          </>
+        )}
       </motion.div>
     </motion.div>
   );
