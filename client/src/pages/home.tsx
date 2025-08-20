@@ -560,6 +560,189 @@ const HowItWorksSection = () => {
   );
 };
 
+const AboutUsSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.3 });
+
+  return (
+    <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-br from-golden/8 via-black to-golden/5"></div>
+      
+      {/* Floating Background Orbs */}
+      <motion.div
+        className="absolute top-1/3 left-1/5 w-80 h-80 bg-golden/6 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.4, 0.2],
+          x: [0, 50, 0]
+        }}
+        transition={{ 
+          duration: 8,
+          repeat: Infinity
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/4 right-1/6 w-64 h-64 bg-golden/4 rounded-full blur-2xl"
+        animate={{ 
+          scale: [1, 1.3, 1],
+          opacity: [0.15, 0.3, 0.15],
+          x: [0, -30, 0]
+        }}
+        transition={{ 
+          duration: 6,
+          repeat: Infinity,
+          delay: 2
+        }}
+      />
+      
+      {/* Diagonal Lines Background */}
+      <div className="absolute inset-0 opacity-10">
+        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-golden to-transparent transform -rotate-12"></div>
+        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-golden to-transparent transform rotate-12"></div>
+      </div>
+
+      <motion.div
+        ref={ref}
+        className="text-center z-10 max-w-6xl w-full"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Section Label */}
+        <motion.div
+          className="inline-flex items-center gap-2 sm:gap-4 mb-8 sm:mb-12"
+          initial={{ opacity: 0, scale: 0.8 }}
+          animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+        >
+          <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
+          <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base md:text-lg">Our Story</span>
+          <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
+        </motion.div>
+        
+        {/* Title */}
+        <motion.h2
+          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-12 sm:mb-16 leading-tight"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          About Us
+        </motion.h2>
+        
+        {/* Story Content */}
+        <motion.div
+          className="bg-black/60 backdrop-blur-md rounded-3xl sm:rounded-[2rem] p-8 sm:p-12 md:p-16 border border-golden/20 max-w-5xl mx-auto relative"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.6 }}
+        >
+          {/* Quote Mark */}
+          <motion.div
+            className="absolute -top-6 left-8 sm:left-12 text-golden/40 text-6xl sm:text-7xl md:text-8xl font-serif"
+            initial={{ opacity: 0, scale: 0 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }}
+            transition={{ duration: 0.6, delay: 0.8 }}
+          >
+            "
+          </motion.div>
+          
+          <motion.p 
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-200 leading-relaxed mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+          >
+            Back when traffic meant spamming GGs and praying to the Reddit gods—we were there. We made IG MCs work, cracked FetLife wide open (never again), and found gold where no one looked.
+          </motion.p>
+          
+          <motion.p 
+            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-200 leading-relaxed mb-8 sm:mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 1 }}
+          >
+            Chances are, your creators have already felt our wave—you just didn't know.
+          </motion.p>
+          
+          <motion.p 
+            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-golden font-league font-bold leading-tight"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 1.2 }}
+          >
+            But now we're out in the open. Pippin Club's done playing quiet.
+          </motion.p>
+          
+          {/* Decorative Bottom Element */}
+          <motion.div
+            className="flex justify-center items-center gap-3 sm:gap-4 mt-12 sm:mt-16"
+            initial={{ opacity: 0 }}
+            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+            transition={{ duration: 1, delay: 1.4 }}
+          >
+            <div className="h-px bg-gradient-to-r from-transparent via-golden/60 to-transparent w-16 sm:w-24"></div>
+            <motion.div
+              className="w-2 h-2 bg-golden rounded-full"
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.6, 1, 0.6]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity
+              }}
+            />
+            <motion.div
+              className="w-3 h-3 bg-golden rounded-full"
+              animate={{ 
+                scale: [1, 1.3, 1],
+                opacity: [0.8, 1, 0.8]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                delay: 0.3
+              }}
+            />
+            <motion.div
+              className="w-2 h-2 bg-golden rounded-full"
+              animate={{ 
+                scale: [1, 1.5, 1],
+                opacity: [0.6, 1, 0.6]
+              }}
+              transition={{ 
+                duration: 2,
+                repeat: Infinity,
+                delay: 0.6
+              }}
+            />
+            <div className="h-px bg-gradient-to-r from-transparent via-golden/60 to-transparent w-16 sm:w-24"></div>
+          </motion.div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.6 }}
+        >
+          <motion.div
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-golden/60"
+          >
+            <span className="text-xs mb-2 tracking-wider">CONTINUE</span>
+            <div className="w-px h-12 bg-gradient-to-b from-golden/60 to-transparent"></div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </div>
+  );
+};
+
 const ReadyToScaleSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -671,6 +854,7 @@ export default function Home() {
       <HeroSection />
       <HowItWorksSection />
       <WhyChooseUsSection />
+      <AboutUsSection />
       <ReadyToScaleSection />
     </div>
   );
