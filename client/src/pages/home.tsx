@@ -743,6 +743,247 @@ const AboutUsSection = () => {
   );
 };
 
+const FAQItem = ({ 
+  question, 
+  answer, 
+  index 
+}: {
+  question: string;
+  answer: string;
+  index: number;
+}) => {
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const opacity = useTransform(scrollYProgress, [0, 0.3, 0.7, 1], [0, 1, 1, 0]);
+
+  return (
+    <motion.div 
+      ref={ref}
+      className="bg-black/40 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-10 border border-golden/20 hover:border-golden/40 transition-all duration-500 group"
+      style={{ y, opacity }}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+    >
+      {/* Question Number */}
+      <motion.div
+        className="flex items-start gap-4 sm:gap-6"
+        initial={{ opacity: 0, x: -20 }}
+        whileInView={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.6, delay: index * 0.1 }}
+        viewport={{ once: true }}
+      >
+        <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-golden/20 rounded-full flex items-center justify-center border border-golden/30 group-hover:bg-golden/30 transition-colors duration-300">
+          <span className="text-golden font-league font-bold text-sm sm:text-base">{index + 1}</span>
+        </div>
+        
+        <div className="flex-1">
+          {/* Question */}
+          <motion.h3
+            className="text-xl sm:text-2xl md:text-3xl font-league font-bold text-golden mb-4 sm:mb-6 leading-tight group-hover:text-golden/90 transition-colors duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 + 0.2 }}
+            viewport={{ once: true }}
+          >
+            {question}
+          </motion.h3>
+          
+          {/* Answer */}
+          <motion.p
+            className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed group-hover:text-white transition-colors duration-300"
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: index * 0.1 + 0.4 }}
+            viewport={{ once: true }}
+          >
+            {answer}
+          </motion.p>
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
+const FAQSection = () => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, amount: 0.2 });
+
+  const faqs = [
+    {
+      question: "How fast will I see results?",
+      answer: "Organic traffic takes time to build, but most clients see early signs within the first month. Real momentum usually kicks in around month 2–3."
+    },
+    {
+      question: "What kind of fan traffic do you get?",
+      answer: "Tier 1 only—USA, UK, CA. High-intent users who search, click, and spend. Think of it like Tinder-level quality, but it's all passive and organic."
+    },
+    {
+      question: "Do I need a website?",
+      answer: "Yes—and if you don't have one, we'll build it for you. It's designed to rank, convert, and attract the right crowd."
+    },
+    {
+      question: "What's a 'traffic site' and why would I want one?",
+      answer: "Traffic sites are model-focused blogs we run that pull in thousands of monthly visitors. We direct that traffic to your models, helping them grow passively."
+    },
+    {
+      question: "Is this white-hat SEO?",
+      answer: "Mostly. We know what works, and we keep things clean enough to last—but sharp enough to win."
+    }
+  ];
+
+  return (
+    <section className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 py-16 sm:py-24 snap-section overflow-hidden">
+      {/* Background Elements */}
+      <div className="absolute inset-0 bg-gradient-to-b from-golden/5 via-black to-golden/8"></div>
+      
+      {/* Animated Background Grid */}
+      <div className="absolute inset-0 opacity-5">
+        {[...Array(20)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-px h-full bg-golden"
+            style={{ left: `${i * 5}%` }}
+            animate={{ 
+              opacity: [0.1, 0.3, 0.1],
+              scaleY: [0.5, 1, 0.5]
+            }}
+            transition={{ 
+              duration: 4,
+              repeat: Infinity,
+              delay: i * 0.2
+            }}
+          />
+        ))}
+      </div>
+
+      {/* Floating Orbs */}
+      <motion.div
+        className="absolute top-1/4 right-1/4 w-96 h-96 bg-golden/6 rounded-full blur-3xl"
+        animate={{ 
+          scale: [1, 1.2, 1],
+          opacity: [0.2, 0.4, 0.2],
+          rotate: [0, 180, 360]
+        }}
+        transition={{ 
+          duration: 12,
+          repeat: Infinity
+        }}
+      />
+      <motion.div
+        className="absolute bottom-1/3 left-1/5 w-64 h-64 bg-golden/4 rounded-full blur-2xl"
+        animate={{ 
+          scale: [1, 1.4, 1],
+          opacity: [0.1, 0.3, 0.1],
+          rotate: [360, 180, 0]
+        }}
+        transition={{ 
+          duration: 10,
+          repeat: Infinity
+        }}
+      />
+
+      <motion.div
+        ref={ref}
+        className="relative z-10 max-w-6xl w-full"
+        initial={{ opacity: 0, y: 50 }}
+        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        transition={{ duration: 1 }}
+      >
+        {/* Section Header */}
+        <div className="text-center mb-16 sm:mb-20">
+          <motion.div
+            className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+          >
+            <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
+            <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base md:text-lg">Questions</span>
+            <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
+          </motion.div>
+          
+          <motion.h2
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            The Real Talk
+          </motion.h2>
+          
+          <motion.p
+            className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-gray-300 max-w-4xl mx-auto leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            No bullshit answers to the questions you're actually asking
+          </motion.p>
+        </div>
+
+        {/* FAQ Grid */}
+        <div className="grid gap-6 sm:gap-8 md:gap-10 max-w-5xl mx-auto">
+          {faqs.map((faq, index) => (
+            <FAQItem
+              key={index}
+              question={faq.question}
+              answer={faq.answer}
+              index={index}
+            />
+          ))}
+        </div>
+
+        {/* Bottom Decorative Element */}
+        <motion.div
+          className="flex justify-center items-center gap-4 sm:gap-6 mt-16 sm:mt-20"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 1, delay: 1.2 }}
+        >
+          <div className="h-px bg-gradient-to-r from-transparent via-golden/40 to-transparent w-24 sm:w-32 md:w-48"></div>
+          <motion.div
+            className="flex gap-2"
+            animate={{ 
+              scale: [1, 1.1, 1]
+            }}
+            transition={{ 
+              duration: 3,
+              repeat: Infinity
+            }}
+          >
+            <div className="w-2 h-2 bg-golden rounded-full animate-pulse"></div>
+            <div className="w-2 h-2 bg-golden rounded-full animate-pulse" style={{ animationDelay: '0.5s' }}></div>
+            <div className="w-2 h-2 bg-golden rounded-full animate-pulse" style={{ animationDelay: '1s' }}></div>
+          </motion.div>
+          <div className="h-px bg-gradient-to-r from-transparent via-golden/40 to-transparent w-24 sm:w-32 md:w-48"></div>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+          initial={{ opacity: 0 }}
+          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
+          transition={{ duration: 0.8, delay: 1.4 }}
+        >
+          <motion.div
+            animate={{ y: [0, 15, 0] }}
+            transition={{ duration: 2, repeat: Infinity }}
+            className="flex flex-col items-center text-golden/60"
+          >
+            <span className="text-xs mb-2 tracking-wider">FINAL STEP</span>
+            <div className="w-px h-12 bg-gradient-to-b from-golden/60 to-transparent"></div>
+          </motion.div>
+        </motion.div>
+      </motion.div>
+    </section>
+  );
+};
+
 const ReadyToScaleSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
@@ -855,6 +1096,7 @@ export default function Home() {
       <HowItWorksSection />
       <WhyChooseUsSection />
       <AboutUsSection />
+      <FAQSection />
       <ReadyToScaleSection />
     </div>
   );
