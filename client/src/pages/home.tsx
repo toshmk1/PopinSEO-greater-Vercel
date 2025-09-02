@@ -376,9 +376,9 @@ const WhyChooseUsCard = ({
           </motion.div>
         </motion.div>
 
-        {/* Progress Indicator */}
+        {/* Progress Indicator - Hidden on mobile */}
         <motion.div
-          className="absolute bottom-8 sm:bottom-12 left-4 sm:left-6 lg:left-8"
+          className="absolute bottom-8 sm:bottom-12 left-4 sm:left-6 lg:left-8 hidden sm:block"
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.2 }}
