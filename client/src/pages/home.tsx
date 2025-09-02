@@ -22,44 +22,75 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 10, scale: 0.95 }}
-      animate={{ opacity: 1, y: 0, scale: 1 }}
-      exit={{ opacity: 0, y: 10, scale: 0.95 }}
-      transition={{ duration: 0.2 }}
-      className="absolute top-full mt-3 left-1/2 transform -translate-x-1/2 bg-black/95 backdrop-blur-lg border border-golden/40 rounded-xl p-4 min-w-[220px] z-50 shadow-2xl shadow-golden/20"
+      initial={{ scaleY: 0, opacity: 0 }}
+      animate={{ 
+        scaleY: isOpen ? 1 : 0, 
+        opacity: isOpen ? 1 : 0,
+        height: isOpen ? "auto" : 0
+      }}
+      transition={{ 
+        duration: 0.4,
+        ease: [0.4, 0, 0.2, 1],
+        opacity: { duration: 0.3 }
+      }}
+      className="absolute inset-0 bg-gradient-to-b from-golden/20 via-golden/10 to-golden/5 backdrop-blur-lg border border-golden/40 rounded-lg overflow-hidden z-50 shadow-2xl shadow-golden/30"
+      style={{ originY: 0 }}
       onClick={(e) => e.stopPropagation()}
     >
-      <div className="flex flex-col gap-3">
-        <motion.button
-          className="flex items-center gap-3 p-3 bg-green-600 hover:bg-green-700 rounded-lg transition-all duration-200 text-white font-medium"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => {
-            window.open('http://wa.me/37495303063', '_blank');
-            onClose();
-          }}
+      {isOpen && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.2, duration: 0.3 }}
+          className="p-4 h-full flex flex-col justify-center gap-3"
         >
-          <span className="text-xl">📱</span>
-          <span>WhatsApp</span>
-        </motion.button>
-        
-        <motion.button
-          className="flex items-center gap-3 p-3 bg-blue-500 hover:bg-blue-600 rounded-lg transition-all duration-200 text-white font-medium"
-          whileHover={{ scale: 1.02 }}
-          whileTap={{ scale: 0.98 }}
-          onClick={() => {
-            window.open('https://t.me/h00000st', '_blank');
-            onClose();
-          }}
-        >
-          <span className="text-xl">💬</span>
-          <span>Telegram</span>
-        </motion.button>
-      </div>
+          <motion.button
+            className="group flex items-center justify-center gap-4 p-4 bg-black/60 hover:bg-black/80 border border-golden/30 hover:border-golden/60 rounded-lg transition-all duration-300 text-golden font-league font-bold backdrop-blur-md relative overflow-hidden"
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: "0 10px 30px rgba(253, 191, 0, 0.3)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              window.open('http://wa.me/37495303063', '_blank');
+              onClose();
+            }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-green-500/20 to-green-600/20"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "0%" }}
+              transition={{ duration: 0.3 }}
+            />
+            <span className="text-2xl relative z-10">📱</span>
+            <span className="text-lg relative z-10">WhatsApp</span>
+          </motion.button>
+          
+          <motion.button
+            className="group flex items-center justify-center gap-4 p-4 bg-black/60 hover:bg-black/80 border border-golden/30 hover:border-golden/60 rounded-lg transition-all duration-300 text-golden font-league font-bold backdrop-blur-md relative overflow-hidden"
+            whileHover={{ 
+              scale: 1.02,
+              boxShadow: "0 10px 30px rgba(253, 191, 0, 0.3)"
+            }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              window.open('https://t.me/h00000st', '_blank');
+              onClose();
+            }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-600/20"
+              initial={{ x: "-100%" }}
+              whileHover={{ x: "0%" }}
+              transition={{ duration: 0.3 }}
+            />
+            <span className="text-2xl relative z-10">💬</span>
+            <span className="text-lg relative z-10">Telegram</span>
+          </motion.button>
+        </motion.div>
+      )}
     </motion.div>
   );
 };
@@ -127,16 +158,24 @@ const HeroSection = () => {
           transition={{ delay: 4, duration: 0.8 }}
           className="relative"
         >
-          <Button
-            size="lg"
-            className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg hover:bg-golden/90 transition-all duration-300 transform hover:scale-105"
+          <motion.button
+            className={`bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg transition-all duration-300 relative overflow-hidden z-10 ${
+              showSubmenu ? 'bg-golden/80 shadow-2xl shadow-golden/40' : 'hover:bg-golden/90'
+            }`}
+            whileHover={{ scale: showSubmenu ? 1 : 1.05 }}
+            whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.stopPropagation();
               setShowSubmenu(!showSubmenu);
             }}
+            animate={{
+              opacity: showSubmenu ? 0 : 1,
+              scale: showSubmenu ? 0.95 : 1
+            }}
+            transition={{ duration: 0.3 }}
           >
             Chat with Our Manager
-          </Button>
+          </motion.button>
           <ContactSubmenu isOpen={showSubmenu} onClose={() => setShowSubmenu(false)} />
         </motion.div>
 
@@ -1455,16 +1494,23 @@ const ReadyToScaleSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.button
-            className="bg-golden text-black font-league font-bold text-xl sm:text-2xl md:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-8 rounded-2xl hover:bg-golden/90 transition-all duration-300 shadow-2xl hover:shadow-golden/30 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-lg"
+            className={`bg-golden text-black font-league font-bold text-xl sm:text-2xl md:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-8 rounded-2xl transition-all duration-300 border-2 border-golden/20 w-full sm:w-auto max-w-lg relative overflow-hidden z-10 ${
+              showSubmenu ? 'bg-golden/80 shadow-2xl shadow-golden/50 border-golden/60' : 'hover:bg-golden/90 hover:shadow-golden/30 hover:border-golden'
+            }`}
             whileHover={{
-              scale: 1.05,
-              boxShadow: "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
+              scale: showSubmenu ? 1 : 1.05,
+              boxShadow: showSubmenu ? "0 25px 50px -12px rgba(253, 191, 0, 0.6)" : "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.stopPropagation();
               setShowSubmenu(!showSubmenu);
             }}
+            animate={{
+              opacity: showSubmenu ? 0 : 1,
+              scale: showSubmenu ? 0.95 : 1
+            }}
+            transition={{ duration: 0.3 }}
           >
             Start Your Transformation
           </motion.button>
