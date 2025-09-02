@@ -894,6 +894,7 @@ const HowItWorksSection = () => {
 const AboutUsSection = () => {
   const [currentChapter, setCurrentChapter] = useState(0);
   const [isHovering, setIsHovering] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false);
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.1 });
 
@@ -1134,7 +1135,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-8 sm:mt-12"
+          className="mt-8 sm:mt-12 relative"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -1146,12 +1147,9 @@ const AboutUsSection = () => {
               boxShadow: "0 0 30px rgba(253, 191, 0, 0.3)"
             }}
             whileTap={{ scale: 0.98 }}
-            onClick={() => {
-              // Scroll to contact section or trigger contact modal
-              const readyToScaleSection = document.querySelector('#ready-to-scale');
-              if (readyToScaleSection) {
-                readyToScaleSection.scrollIntoView({ behavior: 'smooth' });
-              }
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowSubmenu(!showSubmenu);
             }}
           >
             <motion.span
@@ -1170,6 +1168,7 @@ const AboutUsSection = () => {
               <span className="text-golden text-xl">→</span>
             </motion.div>
           </motion.button>
+          <ContactSubmenu isOpen={showSubmenu} onClose={() => setShowSubmenu(false)} />
         </motion.div>
       </motion.div>
     </div>
