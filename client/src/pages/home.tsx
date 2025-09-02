@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useScroll, useTransform, useInView } from "framer-motion";
+import { motion, useScroll, useTransform, useInView, AnimatePresence } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import stage1 from "@/images/stage 1.jpg";
 import stage2 from "@/images/stage 2.jpg";
@@ -22,114 +22,48 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
     };
   }, [isOpen, onClose]);
 
-  if (!isOpen) return null;
-
   return (
-    <motion.div
-      initial={{ 
-        scaleX: 1,
-        scaleY: 0.1,
-        opacity: 0,
-        borderRadius: "12px"
-      }}
-      animate={{ 
-        scaleX: 1,
-        scaleY: 1,
-        opacity: 1,
-        borderRadius: "16px"
-      }}
-      exit={{ 
-        scaleX: 1,
-        scaleY: 0.1,
-        opacity: 0,
-        borderRadius: "12px"
-      }}
-      transition={{ 
-        duration: 0.5,
-        ease: [0.23, 1, 0.32, 1],
-        borderRadius: { duration: 0.3 }
-      }}
-      className="absolute inset-0 bg-gradient-to-br from-golden/15 via-golden/8 to-transparent backdrop-blur-xl border-2 border-golden/50 overflow-hidden z-50 shadow-2xl"
-      style={{ transformOrigin: 'center top' }}
-      onClick={(e) => e.stopPropagation()}
-    >
-      <div className="absolute inset-0 bg-black/20" />
-      
-      <motion.div
-        initial={{ opacity: 0, y: 30 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ delay: 0.3, duration: 0.4 }}
-        className="relative h-full p-6 flex flex-col justify-center gap-4"
-      >
+    <AnimatePresence>
+      {isOpen && (
         <motion.div
-          className="text-center mb-2"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.4, duration: 0.3 }}
+          initial={{ height: 0, opacity: 0 }}
+          animate={{ height: "auto", opacity: 1 }}
+          exit={{ height: 0, opacity: 0 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border border-golden/30 rounded-lg overflow-hidden z-50 shadow-2xl shadow-golden/20"
+          onClick={(e) => e.stopPropagation()}
         >
-          <h3 className="text-golden font-league font-bold text-xl mb-1">Contact Us</h3>
-          <p className="text-golden/70 text-sm">Choose your preferred platform</p>
+          <div className="p-4 space-y-3">
+            <div className="text-center mb-3">
+              <h4 className="text-golden font-league font-bold text-lg">Contact Us</h4>
+              <p className="text-golden/60 text-sm">Choose your platform</p>
+            </div>
+            
+            <button
+              className="w-full flex items-center justify-center gap-3 p-3 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-200 text-white font-medium"
+              onClick={() => {
+                window.open('http://wa.me/37495303063', '_blank');
+                onClose();
+              }}
+            >
+              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+              <span>WhatsApp</span>
+            </button>
+            
+            <button
+              className="w-full flex items-center justify-center gap-3 p-3 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-200 text-white font-medium"
+              onClick={() => {
+                window.open('https://t.me/h00000st', '_blank');
+                onClose();
+              }}
+            >
+              <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
+              <span>Telegram</span>
+            </button>
+          </div>
         </motion.div>
-
-        <motion.button
-          className="group relative w-full p-4 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/30 hover:border-green-400/50 rounded-xl transition-all duration-300 text-white font-league font-bold text-lg backdrop-blur-sm overflow-hidden"
-          whileHover={{ 
-            scale: 1.02,
-            boxShadow: "0 15px 35px rgba(34, 197, 94, 0.2)"
-          }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.5, duration: 0.3 }}
-          onClick={() => {
-            window.open('http://wa.me/37495303063', '_blank');
-            onClose();
-          }}
-        >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/10 to-green-400/0"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "100%" }}
-            transition={{ duration: 0.6 }}
-          />
-          <div className="relative flex items-center justify-center gap-3">
-            <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-              <div className="w-3 h-3 bg-white rounded-full" />
-            </div>
-            <span>WhatsApp Chat</span>
-          </div>
-        </motion.button>
-        
-        <motion.button
-          className="group relative w-full p-4 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/30 hover:border-blue-400/50 rounded-xl transition-all duration-300 text-white font-league font-bold text-lg backdrop-blur-sm overflow-hidden"
-          whileHover={{ 
-            scale: 1.02,
-            boxShadow: "0 15px 35px rgba(59, 130, 246, 0.2)"
-          }}
-          whileTap={{ scale: 0.98 }}
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 0.6, duration: 0.3 }}
-          onClick={() => {
-            window.open('https://t.me/h00000st', '_blank');
-            onClose();
-          }}
-        >
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/10 to-blue-400/0"
-            initial={{ x: "-100%" }}
-            whileHover={{ x: "100%" }}
-            transition={{ duration: 0.6 }}
-          />
-          <div className="relative flex items-center justify-center gap-3">
-            <div className="w-6 h-6 bg-blue-500 rounded-full flex items-center justify-center">
-              <div className="w-3 h-3 bg-white rounded-full" />
-            </div>
-            <span>Telegram Chat</span>
-          </div>
-        </motion.button>
-      </motion.div>
-    </motion.div>
+      )}
+    </AnimatePresence>
   );
 };
 
@@ -197,10 +131,8 @@ const HeroSection = () => {
           className="relative"
         >
           <motion.button
-            className={`bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg transition-all duration-300 relative overflow-hidden ${
-              showSubmenu ? 'opacity-0 pointer-events-none' : 'opacity-100'
-            }`}
-            whileHover={{ scale: showSubmenu ? 1 : 1.05 }}
+            className="bg-golden hover:bg-golden/90 text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg transition-all duration-300 relative overflow-hidden"
+            whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
               e.stopPropagation();
@@ -1527,12 +1459,10 @@ const ReadyToScaleSection = () => {
           transition={{ duration: 0.8, delay: 0.6 }}
         >
           <motion.button
-            className={`bg-golden text-black font-league font-bold text-xl sm:text-2xl md:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-8 rounded-2xl transition-all duration-300 border-2 border-golden/20 w-full sm:w-auto max-w-lg relative overflow-hidden ${
-              showSubmenu ? 'opacity-0 pointer-events-none' : 'opacity-100 hover:bg-golden/90 hover:shadow-golden/30 hover:border-golden'
-            }`}
+            className="bg-golden hover:bg-golden/90 text-black font-league font-bold text-xl sm:text-2xl md:text-3xl px-12 sm:px-16 md:px-20 py-6 sm:py-8 rounded-2xl transition-all duration-300 shadow-2xl hover:shadow-golden/30 border-2 border-golden/20 hover:border-golden w-full sm:w-auto max-w-lg"
             whileHover={{
-              scale: showSubmenu ? 1 : 1.05,
-              boxShadow: showSubmenu ? "0 25px 50px -12px rgba(253, 191, 0, 0.6)" : "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
+              scale: 1.05,
+              boxShadow: "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
             onClick={(e) => {
