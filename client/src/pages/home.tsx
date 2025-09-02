@@ -62,9 +62,11 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               initial={{ opacity: 0, x: -20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.1, duration: 0.3 }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.open('https://wa.me/37495303063', '_blank');
-                onClose();
+                setTimeout(() => onClose(), 300);
               }}
             >
               <motion.div
@@ -86,9 +88,11 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.open('https://t.me/h00000st', '_blank');
-                onClose();
+                setTimeout(() => onClose(), 300);
               }}
             >
               <motion.div
@@ -131,9 +135,11 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
             
             <button
               className="w-full flex items-center justify-center gap-4 p-4 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.open('https://wa.me/37495303063', '_blank');
-                onClose();
+                setTimeout(() => onClose(), 300);
               }}
             >
               <div className="w-5 h-5 bg-green-500 rounded-full"></div>
@@ -142,9 +148,11 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
             
             <button
               className="w-full flex items-center justify-center gap-4 p-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
-              onClick={() => {
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
                 window.open('https://t.me/h00000st', '_blank');
-                onClose();
+                setTimeout(() => onClose(), 300);
               }}
             >
               <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
