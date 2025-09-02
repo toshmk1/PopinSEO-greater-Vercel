@@ -10,28 +10,29 @@ export interface IStorage {
 }
 
 export class MemStorage implements IStorage {
-  private users: Map<number, User>;
-  currentId: number;
+  private static users: Map<number, User> = new Map();
+  private static currentId: number = 1;
 
   constructor() {
-    this.users = new Map();
-    this.currentId = 1;
+    // Use static properties to persist across function calls in same container
+    // Note: In serverless, this will still reset on cold starts
+    // For production, use database storage instead
   }
 
   async getUser(id: number): Promise<User | undefined> {
-    return this.users.get(id);
+    return MemStorage.users.get(id);
   }
 
   async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
+    return Array.from(MemStorage.users.values()).find(
       (user) => user.username === username,
     );
   }
 
   async createUser(insertUser: InsertUser): Promise<User> {
-    const id = this.currentId++;
+    const id = MemStorage.currentId++;
     const user: User = { ...insertUser, id };
-    this.users.set(id, user);
+    MemStorage.users.set(id, user);
     return user;
   }
 }
