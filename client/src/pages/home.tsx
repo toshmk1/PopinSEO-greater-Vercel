@@ -29,44 +29,47 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
           {/* Desktop Version - Transforms in place */}
           <motion.div
             initial={{ 
-              height: "auto",
+              height: "60px",
               width: "auto",
-              scaleY: 0.1,
+              scaleY: 1,
               opacity: 0
             }}
             animate={{ 
-              height: "240px",
-              width: "320px",
+              height: "180px",
+              width: "280px",
               scaleY: 1,
               opacity: 1
             }}
             exit={{ 
-              height: "auto",
+              height: "60px",
               width: "auto",
-              scaleY: 0.1,
+              scaleY: 1,
               opacity: 0
             }}
             transition={{ 
               duration: 0.4,
               ease: [0.23, 1, 0.32, 1]
             }}
-            className="hidden sm:block absolute inset-0 bg-gradient-to-br from-golden/15 via-black/90 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden z-50 shadow-2xl"
-            style={{ transformOrigin: 'center' }}
+            className="hidden sm:block absolute top-0 left-0 right-0 mx-auto bg-gradient-to-br from-golden/15 via-black/90 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-xl overflow-hidden z-50 shadow-2xl"
+            style={{ 
+              transformOrigin: 'top center',
+              maxWidth: '280px'
+            }}
             onClick={(e) => e.stopPropagation()}
           >
             <motion.div
-              initial={{ opacity: 0, y: 20 }}
+              initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className="h-full p-6 flex flex-col justify-center gap-4"
+              className="h-full p-4 flex flex-col justify-center gap-3"
             >
-              <div className="text-center mb-3">
-                <h4 className="text-golden font-league font-bold text-xl mb-2">Contact Us</h4>
-                <p className="text-golden/70 text-sm">Choose your platform</p>
+              <div className="text-center mb-2">
+                <h4 className="text-golden font-league font-bold text-lg mb-1">Contact Us</h4>
+                <p className="text-golden/70 text-xs">Choose your platform</p>
               </div>
               
               <motion.button
-                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
+                className="flex items-center justify-center gap-2 p-2.5 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-sm relative overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: -20 }}
@@ -84,13 +87,13 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                   transition={{ duration: 0.6 }}
                 />
                 <div className="relative flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-green-500 rounded-full"></div>
                   <span>WhatsApp</span>
                 </div>
               </motion.button>
               
               <motion.button
-                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
+                className="flex items-center justify-center gap-2 p-2.5 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-sm relative overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: 20 }}
@@ -108,7 +111,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
                   transition={{ duration: 0.6 }}
                 />
                 <div className="relative flex items-center justify-center gap-2">
-                  <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                  <div className="w-3 h-3 bg-blue-500 rounded-full"></div>
                   <span>Telegram</span>
                 </div>
               </motion.button>
