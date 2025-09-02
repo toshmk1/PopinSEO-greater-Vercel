@@ -919,7 +919,7 @@ const AboutUsSection = () => {
     {
       title: "The Shadow Network",
       stage: "WE MAY KNOW EACH OTHER", 
-      text: "Chances are, your creators have already felt our wave—you just didn't know. We were the invisible hand behind countless success stories, perfecting methods in the shadows.",
+      text: "Chances are, your creators have already felt our wave—you just didn't know and maybe you've already bought fan traffic from us without even knowing.",
       icon: "⚡",
       color: "from-purple-500/20 to-blue-500/20"
     },
