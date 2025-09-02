@@ -5,9 +5,69 @@ import stage1 from "@/images/stage 1.jpg";
 import stage2 from "@/images/stage 2.jpg";
 import stage3 from "@/images/stage 3.jpg";
 
+const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (isOpen) {
+        onClose();
+      }
+    };
+
+    if (isOpen) {
+      document.addEventListener('click', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('click', handleClickOutside);
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10, scale: 0.95 }}
+      animate={{ opacity: 1, y: 0, scale: 1 }}
+      exit={{ opacity: 0, y: 10, scale: 0.95 }}
+      transition={{ duration: 0.2 }}
+      className="absolute top-full mt-3 left-1/2 transform -translate-x-1/2 bg-black/95 backdrop-blur-lg border border-golden/40 rounded-xl p-4 min-w-[220px] z-50 shadow-2xl shadow-golden/20"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="flex flex-col gap-3">
+        <motion.button
+          className="flex items-center gap-3 p-3 bg-green-600 hover:bg-green-700 rounded-lg transition-all duration-200 text-white font-medium"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => {
+            window.open('http://wa.me/37495303063', '_blank');
+            onClose();
+          }}
+        >
+          <span className="text-xl">📱</span>
+          <span>WhatsApp</span>
+        </motion.button>
+        
+        <motion.button
+          className="flex items-center gap-3 p-3 bg-blue-500 hover:bg-blue-600 rounded-lg transition-all duration-200 text-white font-medium"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          onClick={() => {
+            window.open('https://t.me/h00000st', '_blank');
+            onClose();
+          }}
+        >
+          <span className="text-xl">💬</span>
+          <span>Telegram</span>
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+};
+
 const HeroSection = () => {
   const [animationStarted, setAnimationStarted] = useState(false);
   const [textRevealed, setTextRevealed] = useState(false);
+  const [showSubmenu, setShowSubmenu] = useState(false);
 
   useEffect(() => {
     // Start the animation after component mounts
@@ -65,14 +125,19 @@ const HeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 4, duration: 0.8 }}
+          className="relative"
         >
           <Button
             size="lg"
             className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg hover:bg-golden/90 transition-all duration-300 transform hover:scale-105"
-            onClick={() => window.open('http://wa.me/37495303063', '_blank')}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowSubmenu(!showSubmenu);
+            }}
           >
             Chat with Our Manager
           </Button>
+          <ContactSubmenu isOpen={showSubmenu} onClose={() => setShowSubmenu(false)} />
         </motion.div>
 
         {/* Trust Bar */}
@@ -1324,6 +1389,7 @@ const FAQSection = () => {
 const ReadyToScaleSection = () => {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const [showSubmenu, setShowSubmenu] = useState(false);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section">
@@ -1383,7 +1449,7 @@ const ReadyToScaleSection = () => {
 
         {/* CTA Button */}
         <motion.div
-          className="inline-block"
+          className="inline-block relative"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -1395,10 +1461,14 @@ const ReadyToScaleSection = () => {
               boxShadow: "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
-            onClick={() => window.open('http://wa.me/37495303063', '_blank')}
+            onClick={(e) => {
+              e.stopPropagation();
+              setShowSubmenu(!showSubmenu);
+            }}
           >
             Start Your Transformation
           </motion.button>
+          <ContactSubmenu isOpen={showSubmenu} onClose={() => setShowSubmenu(false)} />
         </motion.div>
 
         {/* Decorative Elements */}
