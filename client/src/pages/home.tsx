@@ -47,62 +47,64 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.8, y: -20 }}
         transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="hidden sm:block fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden z-[9999] shadow-2xl"
+        className="hidden sm:block fixed inset-0 flex items-center justify-center z-[9999]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 space-y-4">
-          <div className="text-center mb-4">
-            <h4 className="text-golden font-league font-bold text-xl mb-2">Contact Us</h4>
-            <p className="text-golden/70 text-sm">Choose your preferred platform</p>
+        <div className="w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden shadow-2xl">
+          <div className="p-6 space-y-4">
+            <div className="text-center mb-4">
+              <h4 className="text-golden font-league font-bold text-xl mb-2">Contact Us</h4>
+              <p className="text-golden/70 text-sm">Choose your preferred platform</p>
+            </div>
+            
+            <motion.button
+              className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.1, duration: 0.3 }}
+              onClick={() => {
+                window.open('https://wa.me/37495303063', '_blank');
+                onClose();
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/20 to-green-400/0"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <div className="relative flex items-center justify-center gap-3">
+                <div className="w-4 h-4 bg-green-500 rounded-full"></div>
+                <span>WhatsApp</span>
+              </div>
+            </motion.button>
+            
+            <motion.button
+              className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
+              whileHover={{ scale: 1.02, y: -2 }}
+              whileTap={{ scale: 0.98 }}
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+              onClick={() => {
+                window.open('https://t.me/h00000st', '_blank');
+                onClose();
+              }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0"
+                initial={{ x: "-100%" }}
+                whileHover={{ x: "100%" }}
+                transition={{ duration: 0.6 }}
+              />
+              <div className="relative flex items-center justify-center gap-3">
+                <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
+                <span>Telegram</span>
+              </div>
+            </motion.button>
           </div>
-          
-          <motion.button
-            className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.1, duration: 0.3 }}
-            onClick={() => {
-              window.open('http://wa.me/37495303063', '_blank');
-              onClose();
-            }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/20 to-green-400/0"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6 }}
-            />
-            <div className="relative flex items-center justify-center gap-3">
-              <div className="w-4 h-4 bg-green-500 rounded-full"></div>
-              <span>WhatsApp</span>
-            </div>
-          </motion.button>
-          
-          <motion.button
-            className="w-full flex items-center justify-center gap-3 p-4 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
-            whileHover={{ scale: 1.02, y: -2 }}
-            whileTap={{ scale: 0.98 }}
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.2, duration: 0.3 }}
-            onClick={() => {
-              window.open('https://t.me/h00000st', '_blank');
-              onClose();
-            }}
-          >
-            <motion.div
-              className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0"
-              initial={{ x: "-100%" }}
-              whileHover={{ x: "100%" }}
-              transition={{ duration: 0.6 }}
-            />
-            <div className="relative flex items-center justify-center gap-3">
-              <div className="w-4 h-4 bg-blue-500 rounded-full"></div>
-              <span>Telegram</span>
-            </div>
-          </motion.button>
         </div>
       </motion.div>
 
@@ -113,36 +115,38 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.9, y: 20 }}
         transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="block sm:hidden fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-[90vw] max-w-sm bg-black/95 backdrop-blur-xl border border-golden/30 rounded-2xl overflow-hidden z-[9999] shadow-2xl shadow-golden/20"
+        className="block sm:hidden fixed inset-0 flex items-center justify-center p-4 z-[9999]"
         onClick={(e) => e.stopPropagation()}
       >
-        <div className="p-6 space-y-4">
-          <div className="text-center mb-4">
-            <h4 className="text-golden font-league font-bold text-xl">Contact Us</h4>
-            <p className="text-golden/60 text-sm mt-1">Choose your preferred platform</p>
+        <div className="w-full max-w-sm bg-black/95 backdrop-blur-xl border border-golden/30 rounded-2xl overflow-hidden shadow-2xl shadow-golden/20">
+          <div className="p-6 space-y-4">
+            <div className="text-center mb-4">
+              <h4 className="text-golden font-league font-bold text-xl">Contact Us</h4>
+              <p className="text-golden/60 text-sm mt-1">Choose your preferred platform</p>
+            </div>
+            
+            <button
+              className="w-full flex items-center justify-center gap-4 p-4 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
+              onClick={() => {
+                window.open('https://wa.me/37495303063', '_blank');
+                onClose();
+              }}
+            >
+              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+              <span>WhatsApp</span>
+            </button>
+            
+            <button
+              className="w-full flex items-center justify-center gap-4 p-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
+              onClick={() => {
+                window.open('https://t.me/h00000st', '_blank');
+                onClose();
+              }}
+            >
+              <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
+              <span>Telegram</span>
+            </button>
           </div>
-          
-          <button
-            className="w-full flex items-center justify-center gap-4 p-4 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
-            onClick={() => {
-              window.open('http://wa.me/37495303063', '_blank');
-              onClose();
-            }}
-          >
-            <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-            <span>WhatsApp</span>
-          </button>
-          
-          <button
-            className="w-full flex items-center justify-center gap-4 p-4 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-200 text-white font-medium text-base"
-            onClick={() => {
-              window.open('https://t.me/h00000st', '_blank');
-              onClose();
-            }}
-          >
-            <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
-            <span>Telegram</span>
-          </button>
         </div>
       </motion.div>
     </>
