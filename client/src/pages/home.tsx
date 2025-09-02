@@ -6,19 +6,21 @@ import stage2 from "@/images/stage 2.jpg";
 import stage3 from "@/images/stage 3.jpg";
 
 const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
+  const menuRef = useRef<HTMLDivElement>(null);
+  
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen) {
+      if (isOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
         onClose();
       }
     };
 
     if (isOpen) {
-      document.addEventListener('click', handleClickOutside);
+      document.addEventListener('mousedown', handleClickOutside);
     }
 
     return () => {
-      document.removeEventListener('click', handleClickOutside);
+      document.removeEventListener('mousedown', handleClickOutside);
     };
   }, [isOpen, onClose]);
 
@@ -28,21 +30,22 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         <>
           {/* Desktop Version - Transforms in place */}
           <motion.div
+            ref={menuRef}
             initial={{ 
               height: "60px",
-              width: "auto",
+              width: "280px",
               scaleY: 1,
               opacity: 0
             }}
             animate={{ 
-              height: "180px",
-              width: "280px",
+              height: "200px",
+              width: "320px",
               scaleY: 1,
               opacity: 1
             }}
             exit={{ 
               height: "60px",
-              width: "auto",
+              width: "280px",
               scaleY: 1,
               opacity: 0
             }}
@@ -50,10 +53,9 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               duration: 0.4,
               ease: [0.23, 1, 0.32, 1]
             }}
-            className="hidden sm:block absolute top-0 left-0 right-0 mx-auto bg-gradient-to-br from-golden/15 via-black/90 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-xl overflow-hidden z-50 shadow-2xl"
+            className="hidden sm:block absolute top-0 left-1/2 transform -translate-x-1/2 bg-gradient-to-br from-golden/15 via-black/90 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-xl overflow-hidden z-[9999] shadow-2xl"
             style={{ 
-              transformOrigin: 'top center',
-              maxWidth: '280px'
+              transformOrigin: 'top center'
             }}
             onClick={(e) => e.stopPropagation()}
           >
@@ -120,11 +122,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
 
           {/* Mobile Version - Dropdown */}
           <motion.div
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
+            ref={menuRef}
+            initial={{ height: 0, opacity: 0, scale: 0.9 }}
+            animate={{ height: "auto", opacity: 1, scale: 1 }}
+            exit={{ height: 0, opacity: 0, scale: 0.9 }}
             transition={{ duration: 0.3, ease: "easeInOut" }}
-            className="block sm:hidden absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border border-golden/30 rounded-lg overflow-hidden z-50 shadow-2xl shadow-golden/20"
+            className="block sm:hidden absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-80 max-w-[calc(100vw-2rem)] bg-black/95 backdrop-blur-lg border border-golden/30 rounded-lg overflow-hidden z-[9999] shadow-2xl shadow-golden/20"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="p-4 space-y-3">
@@ -1118,7 +1121,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-8 sm:mt-12 relative"
+          className="mt-8 sm:mt-12 relative inline-block"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
