@@ -31,26 +31,23 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
 
   return (
     <>
-      {/* Fixed overlay for mobile */}
+      {/* Desktop Version - Modal positioned from center */}
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="block sm:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998]"
+        className="hidden sm:block fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] flex items-center justify-center"
         onClick={onClose}
-      />
-      
-      {/* Desktop Version - Modal positioned from center */}
-      <motion.div
-        ref={menuRef}
-        initial={{ opacity: 0, scale: 0.8, y: -20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.8, y: -20 }}
-        transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-        className="hidden sm:block fixed inset-0 flex items-center justify-center z-[9999]"
-        onClick={(e) => e.stopPropagation()}
       >
-        <div className="w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden shadow-2xl">
+        <motion.div
+          ref={menuRef}
+          initial={{ opacity: 0, scale: 0.8, y: -20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.8, y: -20 }}
+          transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
+          className="w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden shadow-2xl z-[9999]"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="p-6 space-y-4">
             <div className="text-center mb-4">
               <h4 className="text-golden font-league font-bold text-xl mb-2">Contact Us</h4>
@@ -105,20 +102,26 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               </div>
             </motion.button>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
 
       {/* Mobile Version - Fixed centered modal */}
       <motion.div
-        ref={menuRef}
-        initial={{ opacity: 0, scale: 0.9, y: 20 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
-        exit={{ opacity: 0, scale: 0.9, y: 20 }}
-        transition={{ duration: 0.3, ease: "easeInOut" }}
-        className="block sm:hidden fixed inset-0 flex items-center justify-center p-4 z-[9999]"
-        onClick={(e) => e.stopPropagation()}
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        className="block sm:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] flex items-center justify-center p-4"
+        onClick={onClose}
       >
-        <div className="w-full max-w-sm bg-black/95 backdrop-blur-xl border border-golden/30 rounded-2xl overflow-hidden shadow-2xl shadow-golden/20">
+        <motion.div
+          ref={menuRef}
+          initial={{ opacity: 0, scale: 0.9, y: 20 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0, scale: 0.9, y: 20 }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="w-full max-w-sm bg-black/95 backdrop-blur-xl border border-golden/30 rounded-2xl overflow-hidden shadow-2xl shadow-golden/20 z-[9999]"
+          onClick={(e) => e.stopPropagation()}
+        >
           <div className="p-6 space-y-4">
             <div className="text-center mb-4">
               <h4 className="text-golden font-league font-bold text-xl">Contact Us</h4>
@@ -147,7 +150,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               <span>Telegram</span>
             </button>
           </div>
-        </div>
+        </motion.div>
       </motion.div>
     </>
   );
