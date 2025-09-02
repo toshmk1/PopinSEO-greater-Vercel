@@ -52,7 +52,7 @@ const HeroSection = () => {
 
         {/* Sub-headline */}
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-10 max-w-2xl mx-auto"
+          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-2 sm:mb-4 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.5, duration: 0.8 }}
@@ -76,7 +76,7 @@ const HeroSection = () => {
 
         {/* Trust Bar */}
         <motion.div
-          className="mt-12 sm:mt-16 text-sm sm:text-base text-gray-400"
+          className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4.5, duration: 0.8 }}
@@ -311,7 +311,7 @@ const WhyChooseUsCard = ({
       >
         {/* Icon & Number */}
         <motion.div 
-          className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-10"
+          className="flex items-center gap-4 sm:gap-6 mb-2 sm:mb-4"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-1 sm:mb-3 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -565,7 +565,7 @@ const WhyChooseUsSection = () => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -580,7 +580,7 @@ const WhyChooseUsSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-1 sm:mb-3 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -671,7 +671,7 @@ const HowItWorksSection = () => {
     <section className="relative">
       {/* Section Header */}
       {/*items-center*/}
-      <div className="min-h-screen flex  justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
+      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div
           ref={ref}
@@ -681,7 +681,7 @@ const HowItWorksSection = () => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
+            className="inline-flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -696,7 +696,7 @@ const HowItWorksSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 relative leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-1 sm:mb-3 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
