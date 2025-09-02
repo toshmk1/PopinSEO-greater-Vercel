@@ -123,7 +123,7 @@ const FullScreenStage = ({
   return (
     <motion.div
       ref={ref}
-      className="relative h-screen w-full overflow-hidden snap-section"
+      className="relative min-h-[70vh] w-full overflow-hidden snap-section"
     >
       {/* Full Screen Image */}
       <motion.div
@@ -261,7 +261,7 @@ const WhyChooseUsCard = ({
   return (
     <motion.div
       ref={ref}
-      className="min-h-screen sm:h-auto py-16 sm:py-24 flex items-center justify-center relative snap-section overflow-hidden"
+      className="min-h-[60vh] py-8 sm:py-16 flex items-center justify-center relative snap-section overflow-hidden"
       style={{ y, opacity }}
     >
       {/* Dynamic Background */}
@@ -311,7 +311,7 @@ const WhyChooseUsCard = ({
       >
         {/* Icon & Number */}
         <motion.div 
-          className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8"
+          className="flex items-center gap-3 sm:gap-5 mb-4 sm:mb-6"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight"
+          className="font-league text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -338,7 +338,7 @@ const WhyChooseUsCard = ({
 
         {/* Description */}
         <motion.div
-          className="bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-golden/20 max-w-3xl"
+          className="bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3 sm:p-5 border border-golden/20 max-w-3xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -555,7 +555,7 @@ const WhyChooseUsSection = () => {
   return (
     <section className="relative">
       {/* Section Header */}
-      <div className="h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
+      <div className="min-h-[50vh] py-6 sm:py-8 flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/8 to-transparent"></div>
         <motion.div
           ref={ref}
@@ -671,7 +671,7 @@ const HowItWorksSection = () => {
     <section className="relative">
       {/* Section Header */}
       {/*items-center*/}
-      <div className="min-h-screen flex  justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
+      <div className="min-h-[50vh] py-8 sm:py-12 flex justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div
           ref={ref}
@@ -809,7 +809,7 @@ const AboutUsSection = () => {
   }, [isInView, isHovering, chapters.length]);
 
   return (
-    <div className="min-h-screen py-8 sm:py-16 flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
+    <div className="min-h-[70vh] py-4 sm:py-12 flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
       {/* Dynamic Background Based on Chapter */}
       <div className={`absolute inset-0 bg-gradient-to-br ${chapters[currentChapter].color} transition-all duration-1000`}></div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80"></div>
@@ -949,7 +949,7 @@ const AboutUsSection = () => {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
           
-          <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-6 sm:p-8 border border-golden/30 m-1">
+          <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-4 sm:p-6 border border-golden/30 m-1">
             {/* Chapter Icon */}
             <motion.div
               className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-golden/20 backdrop-blur-md rounded-full border border-golden/40 flex items-center justify-center"
@@ -963,7 +963,7 @@ const AboutUsSection = () => {
 
             {/* Chapter Title */}
             <motion.h3
-              className="font-league text-3xl sm:text-4xl md:text-5xl font-bold text-golden mb-6 text-center"
+              className="font-league text-2xl sm:text-3xl md:text-4xl font-bold text-golden mb-4 text-center"
               key={`title-${currentChapter}`}
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
@@ -987,7 +987,7 @@ const AboutUsSection = () => {
 
             {/* Progress Indicator */}
             <motion.div
-              className="flex justify-center gap-2 mt-8"
+              className="flex justify-center gap-2 mt-4 sm:mt-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ duration: 0.6, delay: 0.6 }}
