@@ -838,24 +838,7 @@ const HowItWorksSection = () => {
             Transform your agency in 3 simple stages
           </motion.p>
 
-          {/* Desktop Scroll Indicator */}
-          <motion.div
-            className="absolute bottom-12 sm:bottom-16 lg:bottom-20 left-1/2 transform -translate-x-1/2 hidden sm:block"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            <motion.div
-              animate={{ y: [0, 20, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-              className="flex flex-col items-center text-golden/60"
-            >
-              <span className="text-xs sm:text-sm mb-3 sm:mb-4 tracking-wider">
-                SCROLL TO EXPLORE
-              </span>
-              <div className="w-px h-16 sm:h-20 bg-gradient-to-b from-golden/60 to-transparent"></div>
-            </motion.div>
-          </motion.div>
+          
 
           {/* Mobile Swipe Indicator */}
           <motion.div
