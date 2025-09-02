@@ -25,43 +25,135 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          initial={{ height: 0, opacity: 0 }}
-          animate={{ height: "auto", opacity: 1 }}
-          exit={{ height: 0, opacity: 0 }}
-          transition={{ duration: 0.3, ease: "easeInOut" }}
-          className="absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border border-golden/30 rounded-lg overflow-hidden z-50 shadow-2xl shadow-golden/20"
-          onClick={(e) => e.stopPropagation()}
-        >
-          <div className="p-4 space-y-3">
-            <div className="text-center mb-3">
-              <h4 className="text-golden font-league font-bold text-lg">Contact Us</h4>
-              <p className="text-golden/60 text-sm">Choose your platform</p>
+        <>
+          {/* Desktop Version - Transforms in place */}
+          <motion.div
+            initial={{ 
+              scaleY: 0.1,
+              scaleX: 1,
+              opacity: 0,
+              borderRadius: "8px"
+            }}
+            animate={{ 
+              scaleY: 1,
+              scaleX: 1,
+              opacity: 1,
+              borderRadius: "16px"
+            }}
+            exit={{ 
+              scaleY: 0.1,
+              scaleX: 1,
+              opacity: 0,
+              borderRadius: "8px"
+            }}
+            transition={{ 
+              duration: 0.4,
+              ease: [0.23, 1, 0.32, 1]
+            }}
+            className="hidden sm:block absolute inset-0 bg-gradient-to-br from-golden/10 via-black/90 to-golden/5 backdrop-blur-xl border-2 border-golden/40 overflow-hidden z-50 shadow-2xl"
+            style={{ transformOrigin: 'center' }}
+            onClick={(e) => e.stopPropagation()}
+          >
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.3 }}
+              className="h-full p-6 flex flex-col justify-center gap-4"
+            >
+              <div className="text-center mb-3">
+                <h4 className="text-golden font-league font-bold text-xl mb-1">Contact Us</h4>
+                <p className="text-golden/70 text-sm">Choose your platform</p>
+              </div>
+              
+              <motion.button
+                className="flex items-center justify-center gap-4 p-4 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-xl transition-all duration-300 text-white font-league font-bold text-lg relative overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.3, duration: 0.3 }}
+                onClick={() => {
+                  window.open('http://wa.me/37495303063', '_blank');
+                  onClose();
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-green-400/0 via-green-400/20 to-green-400/0"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="relative flex items-center justify-center gap-3">
+                  <div className="w-6 h-6 bg-green-500 rounded-full"></div>
+                  <span>WhatsApp</span>
+                </div>
+              </motion.button>
+              
+              <motion.button
+                className="flex items-center justify-center gap-4 p-4 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-xl transition-all duration-300 text-white font-league font-bold text-lg relative overflow-hidden"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.4, duration: 0.3 }}
+                onClick={() => {
+                  window.open('https://t.me/h00000st', '_blank');
+                  onClose();
+                }}
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-blue-400/0 via-blue-400/20 to-blue-400/0"
+                  initial={{ x: "-100%" }}
+                  whileHover={{ x: "100%" }}
+                  transition={{ duration: 0.6 }}
+                />
+                <div className="relative flex items-center justify-center gap-3">
+                  <div className="w-6 h-6 bg-blue-500 rounded-full"></div>
+                  <span>Telegram</span>
+                </div>
+              </motion.button>
+            </motion.div>
+          </motion.div>
+
+          {/* Mobile Version - Dropdown */}
+          <motion.div
+            initial={{ height: 0, opacity: 0 }}
+            animate={{ height: "auto", opacity: 1 }}
+            exit={{ height: 0, opacity: 0 }}
+            transition={{ duration: 0.3, ease: "easeInOut" }}
+            className="block sm:hidden absolute top-full mt-4 left-1/2 transform -translate-x-1/2 w-64 bg-black/90 backdrop-blur-lg border border-golden/30 rounded-lg overflow-hidden z-50 shadow-2xl shadow-golden/20"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="p-4 space-y-3">
+              <div className="text-center mb-3">
+                <h4 className="text-golden font-league font-bold text-lg">Contact Us</h4>
+                <p className="text-golden/60 text-sm">Choose your platform</p>
+              </div>
+              
+              <button
+                className="w-full flex items-center justify-center gap-3 p-3 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-200 text-white font-medium"
+                onClick={() => {
+                  window.open('http://wa.me/37495303063', '_blank');
+                  onClose();
+                }}
+              >
+                <div className="w-5 h-5 bg-green-500 rounded-full"></div>
+                <span>WhatsApp</span>
+              </button>
+              
+              <button
+                className="w-full flex items-center justify-center gap-3 p-3 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-200 text-white font-medium"
+                onClick={() => {
+                  window.open('https://t.me/h00000st', '_blank');
+                  onClose();
+                }}
+              >
+                <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
+                <span>Telegram</span>
+              </button>
             </div>
-            
-            <button
-              className="w-full flex items-center justify-center gap-3 p-3 bg-green-600/20 hover:bg-green-600/30 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-200 text-white font-medium"
-              onClick={() => {
-                window.open('http://wa.me/37495303063', '_blank');
-                onClose();
-              }}
-            >
-              <div className="w-5 h-5 bg-green-500 rounded-full"></div>
-              <span>WhatsApp</span>
-            </button>
-            
-            <button
-              className="w-full flex items-center justify-center gap-3 p-3 bg-blue-600/20 hover:bg-blue-600/30 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-200 text-white font-medium"
-              onClick={() => {
-                window.open('https://t.me/h00000st', '_blank');
-                onClose();
-              }}
-            >
-              <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
-              <span>Telegram</span>
-            </button>
-          </div>
-        </motion.div>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
@@ -137,6 +229,12 @@ const HeroSection = () => {
             onClick={(e) => {
               e.stopPropagation();
               setShowSubmenu(!showSubmenu);
+            }}
+            animate={{
+              opacity: showSubmenu ? 0 : 1
+            }}
+            style={{
+              pointerEvents: showSubmenu ? 'none' : 'auto'
             }}
           >
             Chat with Our Manager
