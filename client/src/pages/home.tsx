@@ -61,12 +61,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               className="h-full p-6 flex flex-col justify-center gap-3"
             >
               <div className="text-center mb-2">
-                <h4 className="text-golden font-league font-bold text-lg mb-1">Contact Us</h4>
-                <p className="text-golden/70 text-xs">Choose your platform</p>
+                <h4 className="text-golden font-league font-bold text-xl mb-1">Contact Us</h4>
+                <p className="text-golden/70 text-sm">Choose your platform</p>
               </div>
               
               <motion.button
-                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-sm relative overflow-hidden"
+                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-green-600/20 to-green-500/10 hover:from-green-600/30 hover:to-green-500/20 border border-green-500/40 hover:border-green-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: -20 }}
@@ -90,7 +90,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               </motion.button>
               
               <motion.button
-                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-sm relative overflow-hidden"
+                className="flex items-center justify-center gap-3 p-3 bg-gradient-to-r from-blue-600/20 to-blue-500/10 hover:from-blue-600/30 hover:to-blue-500/20 border border-blue-500/40 hover:border-blue-400/60 rounded-lg transition-all duration-300 text-white font-league font-medium text-base relative overflow-hidden"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 initial={{ opacity: 0, x: 20 }}
