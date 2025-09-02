@@ -775,23 +775,23 @@ const AboutUsSection = () => {
   const chapters = [
     {
       title: "The Underground Era",
-      year: "2018-2020",
+      stage: "GENESIS",
       text: "Back when traffic meant spamming GGs and praying to the Reddit gods—we were there. We made IG MCs work, cracked FetLife wide open (never again), and found gold where no one looked.",
-      icon: "🕳️",
+      icon: "🔥",
       color: "from-red-500/20 to-orange-500/20"
     },
     {
-      title: "The Shadow Influence",
-      year: "2020-2022", 
-      text: "Chances are, your creators have already felt our wave—you just didn't know. We were the invisible hand behind countless success stories, testing methods that others wouldn't dare try.",
-      icon: "👤",
+      title: "The Shadow Network",
+      stage: "EVOLUTION", 
+      text: "Chances are, your creators have already felt our wave—you just didn't know. We were the invisible hand behind countless success stories, perfecting methods in the shadows.",
+      icon: "⚡",
       color: "from-purple-500/20 to-blue-500/20"
     },
     {
       title: "Breaking The Surface",
-      year: "2023-NOW",
-      text: "But now we're out in the open. POPPIN's done playing quiet. We've perfected the art of SEO domination and we're ready to transform agencies that are serious about scaling.",
-      icon: "💥",
+      stage: "DOMINATION",
+      text: "Now we're out in the open. POPPIN's done playing quiet. We've mastered SEO domination and we're ready to transform agencies that are serious about explosive growth.",
+      icon: "🚀",
       color: "from-golden/20 to-yellow-400/20"
     }
   ];
@@ -916,7 +916,7 @@ const AboutUsSection = () => {
           {chapters.map((chapter, index) => (
             <motion.button
               key={index}
-              className={`px-4 py-2 rounded-lg border-2 transition-all duration-300 ${
+              className={`px-6 py-3 rounded-xl border-2 transition-all duration-300 ${
                 currentChapter === index
                   ? 'border-golden bg-golden/20 text-golden'
                   : 'border-golden/30 bg-black/40 text-gray-400 hover:border-golden/60 hover:text-gray-200'
@@ -925,7 +925,7 @@ const AboutUsSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="text-xs font-bold">{chapter.year}</div>
+              <div className="text-sm font-bold tracking-wider">{chapter.stage}</div>
             </motion.button>
           ))}
         </motion.div>
@@ -1014,30 +1014,37 @@ const AboutUsSection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
         >
-          <motion.div
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden/20 to-golden/10 rounded-full border border-golden/30 backdrop-blur-md"
+          <motion.button
+            className="inline-flex items-center gap-4 px-12 py-6 bg-gradient-to-r from-golden/20 to-golden/10 rounded-2xl border-2 border-golden/30 backdrop-blur-md transition-all duration-300 hover:bg-gradient-to-r hover:from-golden/30 hover:to-golden/20 hover:border-golden/60"
             whileHover={{ 
-              scale: 1.05, 
-              backgroundColor: "rgba(253, 191, 0, 0.3)",
-              borderColor: "rgba(253, 191, 0, 0.6)"
+              scale: 1.05,
+              boxShadow: "0 0 30px rgba(253, 191, 0, 0.3)"
             }}
-            whileTap={{ scale: 0.95 }}
+            whileTap={{ scale: 0.98 }}
+            onClick={() => {
+              // Scroll to contact section or trigger contact modal
+              const readyToScaleSection = document.querySelector('#ready-to-scale');
+              if (readyToScaleSection) {
+                readyToScaleSection.scrollIntoView({ behavior: 'smooth' });
+              }
+            }}
           >
             <motion.span
-              className="text-golden text-lg font-medium"
-              animate={{ opacity: [1, 0.7, 1] }}
+              className="text-golden text-xl font-bold tracking-wide"
+              animate={{ opacity: [1, 0.8, 1] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              Ready to join our story?
+              Ready to dominate your market?
             </motion.span>
-            <motion.span
-              className="text-golden"
-              animate={{ x: [0, 5, 0] }}
-              transition={{ duration: 1, repeat: Infinity }}
+            <motion.div
+              className="flex items-center gap-2"
+              animate={{ x: [0, 8, 0] }}
+              transition={{ duration: 1.5, repeat: Infinity }}
             >
-              →
-            </motion.span>
-          </motion.div>
+              <span className="text-golden text-xl">→</span>
+              <span className="text-golden text-xl">→</span>
+            </motion.div>
+          </motion.button>
         </motion.div>
       </motion.div>
     </div>
