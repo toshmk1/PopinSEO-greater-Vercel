@@ -35,7 +35,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               opacity: 0
             }}
             animate={{ 
-              height: "200px",
+              height: "240px",
               width: "320px",
               scaleY: 1,
               opacity: 1
@@ -58,10 +58,10 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.2, duration: 0.3 }}
-              className="h-full p-6 flex flex-col justify-center gap-3"
+              className="h-full p-6 flex flex-col justify-center gap-4"
             >
-              <div className="text-center mb-2">
-                <h4 className="text-golden font-league font-bold text-xl mb-1">Contact Us</h4>
+              <div className="text-center mb-3">
+                <h4 className="text-golden font-league font-bold text-xl mb-2">Contact Us</h4>
                 <p className="text-golden/70 text-sm">Choose your platform</p>
               </div>
               
