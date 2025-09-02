@@ -36,7 +36,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="hidden sm:block fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm z-[9998]"
+        className="hidden sm:block fixed top-0 left-0 w-full h-full bg-black/60 backdrop-blur-md z-[9998]"
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={onClose}
       >
@@ -111,7 +111,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="block sm:hidden fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] flex items-center justify-center p-4"
+        className="block sm:hidden fixed inset-0 bg-black/60 backdrop-blur-md z-[9998] flex items-center justify-center p-4"
         onClick={onClose}
       >
         <motion.div
