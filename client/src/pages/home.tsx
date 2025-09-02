@@ -30,7 +30,7 @@ const HeroSection = () => {
     <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8 snap-section">
       <div className="text-center max-w-4xl mx-auto">
         {/* Brand Name with Letter Reveal Animation */}
-        <div className="mb-8 sm:mb-12 brand-container">
+        <div className="mb-6 sm:mb-10 brand-container">
           <h1 className="font-league text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-wider">
             <span
               className={`brand-text ${animationStarted ? "animate" : ""} ${textRevealed ? "revealed" : ""}`}
@@ -52,7 +52,7 @@ const HeroSection = () => {
 
         {/* Sub-headline */}
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto"
+          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-6 sm:mb-10 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.5, duration: 0.8 }}
@@ -144,7 +144,7 @@ const FullScreenStage = ({
 
       {/* Floating Text Content */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8"
+        className="absolute inset-0 flex items-center justify-center z-10 px-6 sm:px-8 lg:px-12"
         style={{
           y: textY,
           opacity: textOpacity,
@@ -153,7 +153,7 @@ const FullScreenStage = ({
         <div className="text-center max-w-5xl w-full">
           {/* Step Number */}
           <motion.div
-            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-6 sm:mb-8"
+            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-4 sm:mb-6"
             initial={{ scale: 0, rotate: 180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -166,7 +166,7 @@ const FullScreenStage = ({
 
           {/* Title */}
           <motion.h2
-            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2"
+            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -311,7 +311,7 @@ const WhyChooseUsCard = ({
       >
         {/* Icon & Number */}
         <motion.div 
-          className="flex items-center gap-6 mb-8 sm:mb-12"
+          className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-10"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
+          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 sm:mb-6 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -868,7 +868,7 @@ const AboutUsSection = () => {
       >
         {/* Section Header with Interactive Elements */}
         <motion.div
-          className="mb-12 sm:mb-16"
+          className="mb-8 sm:mb-12"
           initial={{ y: -50 }}
           animate={isInView ? { y: 0 } : { y: -50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -908,7 +908,7 @@ const AboutUsSection = () => {
 
         {/* Interactive Chapter Navigation */}
         <motion.div
-          className="flex justify-center gap-2 sm:gap-4 mb-12 px-4 sm:px-0"
+          className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-10 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -1009,7 +1009,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-16"
+          className="mt-10 sm:mt-14"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
