@@ -36,7 +36,8 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
-        className="hidden sm:block fixed inset-0 bg-black/50 backdrop-blur-sm z-[9998] flex items-center justify-center"
+        className="hidden sm:block fixed top-0 left-0 w-full h-full bg-black/50 backdrop-blur-sm z-[9998]"
+        style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
         onClick={onClose}
       >
         <motion.div
@@ -45,7 +46,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: -20 }}
           transition={{ duration: 0.3, ease: [0.23, 1, 0.32, 1] }}
-          className="w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden shadow-2xl z-[9999]"
+          className="w-80 bg-gradient-to-br from-golden/15 via-black/95 to-golden/10 backdrop-blur-xl border-2 border-golden/50 rounded-2xl overflow-hidden shadow-2xl"
           onClick={(e) => e.stopPropagation()}
         >
           <div className="p-6 space-y-4">
