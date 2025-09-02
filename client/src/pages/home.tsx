@@ -261,7 +261,7 @@ const WhyChooseUsCard = ({
   return (
     <motion.div
       ref={ref}
-      className="h-screen flex items-center justify-center relative snap-section overflow-hidden"
+      className="min-h-screen sm:h-auto py-16 sm:py-24 flex items-center justify-center relative snap-section overflow-hidden"
       style={{ y, opacity }}
     >
       {/* Dynamic Background */}
@@ -306,12 +306,12 @@ const WhyChooseUsCard = ({
 
       {/* Content */}
       <motion.div
-        className="text-left max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10 pr-32 sm:pr-48 lg:pr-64"
+        className="text-left max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10 pr-20 sm:pr-32 lg:pr-48"
         style={{ scale }}
       >
         {/* Icon & Number */}
         <motion.div 
-          className="flex items-center gap-6 mb-8 sm:mb-12"
+          className="flex items-center gap-4 sm:gap-6 mb-6 sm:mb-8"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
+          className="font-league text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 sm:mb-6 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -338,7 +338,7 @@ const WhyChooseUsCard = ({
 
         {/* Description */}
         <motion.div
-          className="bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-6 sm:p-8 border border-golden/20 max-w-3xl"
+          className="bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-golden/20 max-w-3xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -349,13 +349,13 @@ const WhyChooseUsCard = ({
             scale: 1.02
           }}
         >
-          <p className="text-lg sm:text-xl md:text-2xl text-gray-200 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
             {description}
           </p>
           
           {/* Interactive Highlight */}
           <motion.div 
-            className="mt-6 flex items-center gap-3"
+            className="mt-4 flex items-center gap-3"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1 }}
@@ -809,7 +809,7 @@ const AboutUsSection = () => {
   }, [isInView, isHovering, chapters.length]);
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
+    <div className="min-h-screen py-8 sm:py-16 flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
       {/* Dynamic Background Based on Chapter */}
       <div className={`absolute inset-0 bg-gradient-to-br ${chapters[currentChapter].color} transition-all duration-1000`}></div>
       <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80"></div>
@@ -868,7 +868,7 @@ const AboutUsSection = () => {
       >
         {/* Section Header with Interactive Elements */}
         <motion.div
-          className="mb-12 sm:mb-16"
+          className="mb-8 sm:mb-12"
           initial={{ y: -50 }}
           animate={isInView ? { y: 0 } : { y: -50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -908,7 +908,7 @@ const AboutUsSection = () => {
 
         {/* Interactive Chapter Navigation */}
         <motion.div
-          className="flex justify-center gap-2 sm:gap-4 mb-12 px-4 sm:px-0"
+          className="flex justify-center gap-2 sm:gap-4 mb-8 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -949,7 +949,7 @@ const AboutUsSection = () => {
             transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
           />
           
-          <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-8 sm:p-12 border border-golden/30 m-1">
+          <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-6 sm:p-8 border border-golden/30 m-1">
             {/* Chapter Icon */}
             <motion.div
               className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-golden/20 backdrop-blur-md rounded-full border border-golden/40 flex items-center justify-center"
@@ -1009,7 +1009,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-16"
+          className="mt-8 sm:mt-12"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
