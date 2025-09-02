@@ -884,21 +884,21 @@ const AboutUsSection = () => {
   const chapters = [
     {
       title: "The Underground Era",
-      stage: "GENESIS",
+      stage: "THE PAST",
       text: "Back when traffic meant spamming GGs and praying to the Reddit gods—we were there. We made IG MCs work, cracked FetLife wide open (never again), and found gold where no one looked.",
       icon: "🔥",
       color: "from-red-500/20 to-orange-500/20"
     },
     {
       title: "The Shadow Network",
-      stage: "EVOLUTION", 
+      stage: "WE MAY KNOW EACH OTHER", 
       text: "Chances are, your creators have already felt our wave—you just didn't know. We were the invisible hand behind countless success stories, perfecting methods in the shadows.",
       icon: "⚡",
       color: "from-purple-500/20 to-blue-500/20"
     },
     {
       title: "Breaking The Surface",
-      stage: "DOMINATION",
+      stage: "AND WHAT NOW?",
       text: "Now we're out in the open. POPPIN's done playing quiet. We've mastered SEO domination and we're ready to transform agencies that are serious about explosive growth.",
       icon: "🚀",
       color: "from-golden/20 to-yellow-400/20"
