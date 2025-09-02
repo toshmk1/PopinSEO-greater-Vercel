@@ -803,7 +803,7 @@ const AboutUsSection = () => {
       if (!isHovering) {
         setCurrentChapter((prev) => (prev + 1) % chapters.length);
       }
-    }, 4000);
+    }, 6000);
     
     return () => clearInterval(interval);
   }, [isInView, isHovering, chapters.length]);
@@ -908,7 +908,7 @@ const AboutUsSection = () => {
 
         {/* Interactive Chapter Navigation */}
         <motion.div
-          className="flex justify-center gap-4 mb-12"
+          className="flex justify-center gap-2 sm:gap-4 mb-12 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -916,7 +916,7 @@ const AboutUsSection = () => {
           {chapters.map((chapter, index) => (
             <motion.button
               key={index}
-              className={`px-6 py-3 rounded-xl border-2 transition-all duration-300 ${
+              className={`px-3 py-2 sm:px-6 sm:py-3 rounded-lg sm:rounded-xl border-2 transition-all duration-300 ${
                 currentChapter === index
                   ? 'border-golden bg-golden/20 text-golden'
                   : 'border-golden/30 bg-black/40 text-gray-400 hover:border-golden/60 hover:text-gray-200'
@@ -925,7 +925,7 @@ const AboutUsSection = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
-              <div className="text-sm font-bold tracking-wider">{chapter.stage}</div>
+              <div className="text-xs sm:text-sm font-bold tracking-wider">{chapter.stage}</div>
             </motion.button>
           ))}
         </motion.div>
