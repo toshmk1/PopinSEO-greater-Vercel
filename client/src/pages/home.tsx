@@ -767,190 +767,276 @@ const HowItWorksSection = () => {
 };
 
 const AboutUsSection = () => {
+  const [currentChapter, setCurrentChapter] = useState(0);
+  const [isHovering, setIsHovering] = useState(false);
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.3 });
+  const isInView = useInView(ref, { once: true, amount: 0.1 });
+
+  const chapters = [
+    {
+      title: "The Underground Era",
+      year: "2018-2020",
+      text: "Back when traffic meant spamming GGs and praying to the Reddit gods—we were there. We made IG MCs work, cracked FetLife wide open (never again), and found gold where no one looked.",
+      icon: "🕳️",
+      color: "from-red-500/20 to-orange-500/20"
+    },
+    {
+      title: "The Shadow Influence",
+      year: "2020-2022", 
+      text: "Chances are, your creators have already felt our wave—you just didn't know. We were the invisible hand behind countless success stories, testing methods that others wouldn't dare try.",
+      icon: "👤",
+      color: "from-purple-500/20 to-blue-500/20"
+    },
+    {
+      title: "Breaking The Surface",
+      year: "2023-NOW",
+      text: "But now we're out in the open. POPPIN's done playing quiet. We've perfected the art of SEO domination and we're ready to transform agencies that are serious about scaling.",
+      icon: "💥",
+      color: "from-golden/20 to-yellow-400/20"
+    }
+  ];
+
+  useEffect(() => {
+    if (!isInView) return;
+    
+    const interval = setInterval(() => {
+      if (!isHovering) {
+        setCurrentChapter((prev) => (prev + 1) % chapters.length);
+      }
+    }, 4000);
+    
+    return () => clearInterval(interval);
+  }, [isInView, isHovering, chapters.length]);
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 snap-section overflow-hidden">
-      {/* Background Elements */}
-      <div className="absolute inset-0 bg-gradient-to-br from-golden/8 via-black to-golden/5"></div>
+      {/* Dynamic Background Based on Chapter */}
+      <div className={`absolute inset-0 bg-gradient-to-br ${chapters[currentChapter].color} transition-all duration-1000`}></div>
+      <div className="absolute inset-0 bg-gradient-to-br from-black/80 via-black/60 to-black/80"></div>
 
-      {/* Floating Background Orbs */}
-      <motion.div
-        className="absolute top-1/3 left-1/5 w-80 h-80 bg-golden/6 rounded-full blur-3xl"
-        animate={{
-          scale: [1, 1.2, 1],
-          opacity: [0.2, 0.4, 0.2],
-          x: [0, 50, 0],
-        }}
-        transition={{
-          duration: 8,
-          repeat: Infinity,
-        }}
-      />
-      <motion.div
-        className="absolute bottom-1/4 right-1/6 w-64 h-64 bg-golden/4 rounded-full blur-2xl"
-        animate={{
-          scale: [1, 1.3, 1],
-          opacity: [0.15, 0.3, 0.15],
-          x: [0, -30, 0],
-        }}
-        transition={{
-          duration: 6,
-          repeat: Infinity,
-          delay: 2,
-        }}
-      />
+      {/* Interactive Particle System */}
+      <div className="absolute inset-0">
+        {[...Array(15)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute w-2 h-2 bg-golden/30 rounded-full"
+            style={{
+              left: `${Math.random() * 100}%`,
+              top: `${Math.random() * 100}%`,
+            }}
+            animate={{
+              scale: [0, 1, 0],
+              opacity: [0, 0.6, 0],
+              x: [0, (Math.random() - 0.5) * 100],
+              y: [0, (Math.random() - 0.5) * 100],
+            }}
+            transition={{
+              duration: 3 + Math.random() * 2,
+              repeat: Infinity,
+              delay: Math.random() * 3,
+            }}
+          />
+        ))}
+      </div>
 
-      {/* Diagonal Lines Background */}
+      {/* Matrix-style Code Rain Effect */}
       <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/4 left-0 w-full h-px bg-gradient-to-r from-transparent via-golden to-transparent transform -rotate-12"></div>
-        <div className="absolute bottom-1/3 left-0 w-full h-px bg-gradient-to-r from-transparent via-golden to-transparent transform rotate-12"></div>
+        {[...Array(8)].map((_, i) => (
+          <motion.div
+            key={i}
+            className="absolute text-golden/20 text-xs font-mono"
+            style={{ left: `${i * 12.5}%` }}
+            animate={{ y: ['-100vh', '100vh'] }}
+            transition={{
+              duration: 8 + Math.random() * 4,
+              repeat: Infinity,
+              ease: "linear",
+              delay: Math.random() * 8
+            }}
+          >
+            {Array.from({ length: 20 }, () => Math.random().toString(36)[2]).join('')}
+          </motion.div>
+        ))}
       </div>
 
       <motion.div
         ref={ref}
-        className="text-center z-10 max-w-6xl w-full"
-        initial={{ opacity: 0, y: 50 }}
-        animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 50 }}
+        className="text-center z-10 max-w-7xl w-full"
+        initial={{ opacity: 0 }}
+        animate={isInView ? { opacity: 1 } : { opacity: 0 }}
         transition={{ duration: 1 }}
       >
-        {/* Section Label */}
+        {/* Section Header with Interactive Elements */}
         <motion.div
-          className="inline-flex items-center gap-2 sm:gap-4 mb-8 sm:mb-12"
-          initial={{ opacity: 0, scale: 0.8 }}
-          animate={
-            isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
-          }
+          className="mb-12 sm:mb-16"
+          initial={{ y: -50 }}
+          animate={isInView ? { y: 0 } : { y: -50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
-          <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base md:text-lg">
-            Our Story
-          </span>
-          <div className="h-px bg-golden w-16 sm:w-24 md:w-32"></div>
+          <div className="inline-flex items-center gap-4 mb-8">
+            <motion.div 
+              className="h-px bg-golden w-20 sm:w-32"
+              animate={{ width: isInView ? ["0%", "100%"] : "0%" }}
+              transition={{ duration: 1, delay: 0.5 }}
+            />
+            <span className="text-golden font-medium tracking-wider uppercase text-sm sm:text-base">
+              Origin Story
+            </span>
+            <motion.div 
+              className="h-px bg-golden w-20 sm:w-32"
+              animate={{ width: isInView ? ["0%", "100%"] : "0%" }}
+              transition={{ duration: 1, delay: 0.7 }}
+            />
+          </div>
+
+          <motion.h2
+            className="font-league text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white mb-4 leading-tight"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+          >
+            About{" "}
+            <motion.span 
+              className="text-golden"
+              animate={{ textShadow: ["0 0 0px #fdbf00", "0 0 20px #fdbf00", "0 0 0px #fdbf00"] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              POPPIN
+            </motion.span>
+          </motion.h2>
         </motion.div>
 
-        {/* Title */}
-        <motion.h2
-          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-12 sm:mb-16 leading-tight"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-        >
-          About Us
-        </motion.h2>
-
-        {/* Story Content */}
+        {/* Interactive Chapter Navigation */}
         <motion.div
-          className="bg-black/60 backdrop-blur-md rounded-3xl sm:rounded-[2rem] p-8 sm:p-12 md:p-16 border border-golden/20 max-w-5xl mx-auto relative"
-          initial={{ opacity: 0, y: 30 }}
-          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          className="flex justify-center gap-4 mb-12"
+          initial={{ opacity: 0, y: 20 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
         >
-          {/* Quote Mark */}
-          <motion.div
-            className="absolute -top-6 left-8 sm:left-12 text-golden/40 text-6xl sm:text-7xl md:text-8xl font-serif"
-            initial={{ opacity: 0, scale: 0 }}
-            animate={
-              isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0 }
-            }
-            transition={{ duration: 0.6, delay: 0.8 }}
-          >
-            "
-          </motion.div>
-
-          <motion.p
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-200 leading-relaxed mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-          >
-            Back when traffic meant spamming GGs and praying to the Reddit
-            gods—we were there. We made IG MCs work, cracked FetLife wide open
-            (never again), and found gold where no one looked.
-          </motion.p>
-
-          <motion.p
-            className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-200 leading-relaxed mb-8 sm:mb-12"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 1 }}
-          >
-            Chances are, your creators have already felt our wave—you just
-            didn't know.
-          </motion.p>
-
-          <motion.p
-            className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl text-golden font-league font-bold leading-tight"
-            initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-          >
-            But now we're out in the open. Pippin Club's done playing quiet.
-          </motion.p>
-
-          {/* Decorative Bottom Element */}
-          <motion.div
-            className="flex justify-center items-center gap-3 sm:gap-4 mt-12 sm:mt-16"
-            initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 1, delay: 1.4 }}
-          >
-            <div className="h-px bg-gradient-to-r from-transparent via-golden/60 to-transparent w-16 sm:w-24"></div>
-            <motion.div
-              className="w-2 h-2 bg-golden rounded-full"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.6, 1, 0.6],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-              }}
-            />
-            <motion.div
-              className="w-3 h-3 bg-golden rounded-full"
-              animate={{
-                scale: [1, 1.3, 1],
-                opacity: [0.8, 1, 0.8],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: 0.3,
-              }}
-            />
-            <motion.div
-              className="w-2 h-2 bg-golden rounded-full"
-              animate={{
-                scale: [1, 1.5, 1],
-                opacity: [0.6, 1, 0.6],
-              }}
-              transition={{
-                duration: 2,
-                repeat: Infinity,
-                delay: 0.6,
-              }}
-            />
-            <div className="h-px bg-gradient-to-r from-transparent via-golden/60 to-transparent w-16 sm:w-24"></div>
-          </motion.div>
+          {chapters.map((chapter, index) => (
+            <motion.button
+              key={index}
+              className={`px-4 py-2 rounded-lg border-2 transition-all duration-300 ${
+                currentChapter === index
+                  ? 'border-golden bg-golden/20 text-golden'
+                  : 'border-golden/30 bg-black/40 text-gray-400 hover:border-golden/60 hover:text-gray-200'
+              }`}
+              onClick={() => setCurrentChapter(index)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <div className="text-xs font-bold">{chapter.year}</div>
+            </motion.button>
+          ))}
         </motion.div>
 
-        {/* Scroll Indicator */}
+        {/* Main Story Card with Interactive Elements */}
         <motion.div
-          className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
-          initial={{ opacity: 0 }}
-          animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-          transition={{ duration: 0.8, delay: 1.6 }}
+          className="relative max-w-6xl mx-auto"
+          onHoverStart={() => setIsHovering(true)}
+          onHoverEnd={() => setIsHovering(false)}
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 0.8 }}
+        >
+          {/* Animated Border */}
+          <motion.div
+            className="absolute inset-0 rounded-3xl"
+            style={{
+              background: `linear-gradient(45deg, transparent, ${chapters[currentChapter].color.split(' ')[1]}, transparent)`,
+            }}
+            animate={{ rotate: [0, 360] }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          />
+          
+          <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-8 sm:p-12 border border-golden/30 m-1">
+            {/* Chapter Icon */}
+            <motion.div
+              className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-golden/20 backdrop-blur-md rounded-full border border-golden/40 flex items-center justify-center"
+              key={currentChapter}
+              initial={{ scale: 0, rotate: 180 }}
+              animate={{ scale: 1, rotate: 0 }}
+              transition={{ duration: 0.6 }}
+            >
+              <span className="text-2xl">{chapters[currentChapter].icon}</span>
+            </motion.div>
+
+            {/* Chapter Title */}
+            <motion.h3
+              className="font-league text-3xl sm:text-4xl md:text-5xl font-bold text-golden mb-6 text-center"
+              key={`title-${currentChapter}`}
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+            >
+              {chapters[currentChapter].title}
+            </motion.h3>
+
+            {/* Chapter Content */}
+            <motion.div
+              className="text-center"
+              key={`content-${currentChapter}`}
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+            >
+              <p className="text-lg sm:text-xl md:text-2xl text-gray-200 leading-relaxed max-w-4xl mx-auto">
+                {chapters[currentChapter].text}
+              </p>
+            </motion.div>
+
+            {/* Progress Indicator */}
+            <motion.div
+              className="flex justify-center gap-2 mt-8"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.6 }}
+            >
+              {chapters.map((_, index) => (
+                <motion.div
+                  key={index}
+                  className={`w-12 h-1 rounded-full transition-all duration-500 ${
+                    index === currentChapter ? 'bg-golden' : 'bg-golden/20'
+                  }`}
+                  animate={{
+                    width: index === currentChapter ? 48 : 12,
+                  }}
+                />
+              ))}
+            </motion.div>
+          </div>
+        </motion.div>
+
+        {/* Call to Action */}
+        <motion.div
+          className="mt-16"
+          initial={{ opacity: 0, y: 30 }}
+          animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
         >
           <motion.div
-            animate={{ y: [0, 15, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="flex flex-col items-center text-golden/60"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-golden/20 to-golden/10 rounded-full border border-golden/30 backdrop-blur-md"
+            whileHover={{ 
+              scale: 1.05, 
+              backgroundColor: "rgba(253, 191, 0, 0.3)",
+              borderColor: "rgba(253, 191, 0, 0.6)"
+            }}
+            whileTap={{ scale: 0.95 }}
           >
-            <span className="text-xs mb-2 tracking-wider">CONTINUE</span>
-            <div className="w-px h-12 bg-gradient-to-b from-golden/60 to-transparent"></div>
+            <motion.span
+              className="text-golden text-lg font-medium"
+              animate={{ opacity: [1, 0.7, 1] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              Ready to join our story?
+            </motion.span>
+            <motion.span
+              className="text-golden"
+              animate={{ x: [0, 5, 0] }}
+              transition={{ duration: 1, repeat: Infinity }}
+            >
+              →
+            </motion.span>
           </motion.div>
         </motion.div>
       </motion.div>
