@@ -926,7 +926,7 @@ const AboutUsSection = () => {
     {
       title: "Breaking The Surface",
       stage: "AND WHAT NOW?",
-      text: "Now we're out in the open. POPPIN's done playing quiet. We've mastered SEO domination and we're ready to transform agencies that are serious about explosive growth.",
+      text: "Now we're out in the open. Pippin Club is done playing quiet. We've mastered SEO in the OFM industry and we're ready to transform agencies that are serious about explosive growth.",
       icon: "🚀",
       color: "from-golden/20 to-yellow-400/20"
     }
