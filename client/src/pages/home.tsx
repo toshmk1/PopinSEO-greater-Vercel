@@ -82,7 +82,18 @@ const HeroSection = () => {
           animate={{ opacity: 1 }}
           transition={{ delay: 4.5, duration: 0.8 }}
         >
-          <p>Powered by Pippin Club • 2+ Years of OnlyFans SEO Experience</p>
+          <p>
+            Powered by{" "}
+            <a 
+              href="https://pippinclub.com" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-golden hover:text-golden/80 transition-colors cursor-pointer font-medium"
+            >
+              Pippin Club
+            </a>{" "}
+            • 2+ Years of OnlyFans SEO Experience
+          </p>
         </motion.div>
       </div>
     </section>
