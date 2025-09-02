@@ -373,7 +373,7 @@ const FullScreenStage = ({
           {/* Scroll Indicator - Hidden on very small screens */}
           {step < 3 && (
             <motion.div
-              className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block"
+              className="absolute bottom-8 sm:bottom-12 left-1/2 transform -translate-x-1/2 hidden sm:block z-[60]"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               transition={{ duration: 0.8, delay: 1 }}
