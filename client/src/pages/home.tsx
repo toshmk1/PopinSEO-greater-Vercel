@@ -261,7 +261,7 @@ const WhyChooseUsCard = ({
   return (
     <motion.div
       ref={ref}
-      className="min-h-[40vh] py-4 sm:py-8 flex items-center justify-center relative snap-section overflow-hidden"
+      className="min-h-[30vh] py-2 sm:py-6 flex items-center justify-center relative snap-section overflow-hidden"
       style={{ y, opacity }}
     >
       {/* Dynamic Background */}
@@ -293,9 +293,9 @@ const WhyChooseUsCard = ({
         ))}
       </div>
 
-      {/* Visual Element */}
+      {/* Visual Element - Hidden on mobile to prevent overlap */}
       <motion.div
-        className="absolute right-4 sm:right-12 lg:right-20 top-1/2 transform -translate-y-1/2 z-20 scale-75 sm:scale-100"
+        className="absolute right-4 sm:right-12 lg:right-20 top-1/2 transform -translate-y-1/2 z-20 scale-75 sm:scale-100 hidden sm:block"
         initial={{ opacity: 0, x: 100, scale: 0.5 }}
         whileInView={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 1.2, delay: 0.8 }}
@@ -306,7 +306,7 @@ const WhyChooseUsCard = ({
 
       {/* Content */}
       <motion.div
-        className="text-left max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 z-10 pr-12 sm:pr-20 lg:pr-28"
+        className="text-left max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 z-10 pr-0 sm:pr-20 lg:pr-28"
         style={{ scale }}
       >
         {/* Icon & Number */}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white mb-3 sm:mb-4 leading-tight"
+          className="font-league text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-3 sm:mb-4 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -349,7 +349,7 @@ const WhyChooseUsCard = ({
             scale: 1.02
           }}
         >
-          <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed">
+          <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
             {description}
           </p>
           
