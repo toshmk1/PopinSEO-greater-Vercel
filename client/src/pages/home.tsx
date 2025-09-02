@@ -30,7 +30,7 @@ const HeroSection = () => {
     <section className="min-h-screen flex flex-col justify-center items-center relative px-4 sm:px-6 lg:px-8 snap-section">
       <div className="text-center max-w-4xl mx-auto">
         {/* Brand Name with Letter Reveal Animation */}
-        <div className="mb-6 sm:mb-10 brand-container">
+        <div className="mb-8 sm:mb-12 brand-container">
           <h1 className="font-league text-6xl sm:text-8xl md:text-9xl lg:text-[12rem] font-black tracking-wider">
             <span
               className={`brand-text ${animationStarted ? "animate" : ""} ${textRevealed ? "revealed" : ""}`}
@@ -52,7 +52,7 @@ const HeroSection = () => {
 
         {/* Sub-headline */}
         <motion.p
-          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-2 sm:mb-4 max-w-2xl mx-auto"
+          className="text-lg sm:text-xl md:text-2xl text-gray-300 mb-8 sm:mb-12 max-w-2xl mx-auto"
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 3.5, duration: 0.8 }}
@@ -76,7 +76,7 @@ const HeroSection = () => {
 
         {/* Trust Bar */}
         <motion.div
-          className="mt-4 sm:mt-6 text-sm sm:text-base text-gray-400"
+          className="mt-12 sm:mt-16 text-sm sm:text-base text-gray-400"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 4.5, duration: 0.8 }}
@@ -144,7 +144,7 @@ const FullScreenStage = ({
 
       {/* Floating Text Content */}
       <motion.div
-        className="absolute inset-0 flex items-center justify-center z-10 px-6 sm:px-8 lg:px-12"
+        className="absolute inset-0 flex items-center justify-center z-10 px-4 sm:px-6 lg:px-8"
         style={{
           y: textY,
           opacity: textOpacity,
@@ -153,7 +153,7 @@ const FullScreenStage = ({
         <div className="text-center max-w-5xl w-full">
           {/* Step Number */}
           <motion.div
-            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-4 sm:mb-6"
+            className="inline-flex items-center justify-center w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-full border border-golden/30 mb-6 sm:mb-8"
             initial={{ scale: 0, rotate: 180 }}
             whileInView={{ scale: 1, rotate: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
@@ -166,7 +166,7 @@ const FullScreenStage = ({
 
           {/* Title */}
           <motion.h2
-            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-4 sm:mb-6 leading-tight px-2"
+            className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-6 sm:mb-8 leading-tight px-2"
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.4 }}
@@ -311,7 +311,7 @@ const WhyChooseUsCard = ({
       >
         {/* Icon & Number */}
         <motion.div 
-          className="flex items-center gap-4 sm:gap-6 mb-2 sm:mb-4"
+          className="flex items-center gap-6 mb-8 sm:mb-12"
           initial={{ opacity: 0, x: -50 }}
           whileInView={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -327,7 +327,7 @@ const WhyChooseUsCard = ({
 
         {/* Title */}
         <motion.h3
-          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-1 sm:mb-3 leading-tight"
+          className="font-league text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 sm:mb-8 leading-tight"
           initial={{ opacity: 0, y: 50 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.4 }}
@@ -565,7 +565,7 @@ const WhyChooseUsSection = () => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4"
+            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -580,7 +580,7 @@ const WhyChooseUsSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-1 sm:mb-3 relative leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -671,7 +671,7 @@ const HowItWorksSection = () => {
     <section className="relative">
       {/* Section Header */}
       {/*items-center*/}
-      <div className="min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
+      <div className="min-h-screen flex  justify-center bg-black relative overflow-hidden px-4 sm:px-6 lg:px-8 snap-section">
         <div className="absolute inset-0 bg-gradient-to-b from-transparent via-golden/5 to-transparent"></div>
         <motion.div
           ref={ref}
@@ -681,7 +681,7 @@ const HowItWorksSection = () => {
           transition={{ duration: 1 }}
         >
           <motion.div
-            className="inline-flex items-center gap-2 sm:gap-4 mb-1 sm:mb-4"
+            className="inline-flex items-center gap-2 sm:gap-4 mb-6 sm:mb-8"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -696,7 +696,7 @@ const HowItWorksSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-1 sm:mb-3 relative leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -868,12 +868,12 @@ const AboutUsSection = () => {
       >
         {/* Section Header with Interactive Elements */}
         <motion.div
-          className="mb-4 sm:mb-8"
+          className="mb-12 sm:mb-16"
           initial={{ y: -50 }}
           animate={isInView ? { y: 0 } : { y: -50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="inline-flex items-center gap-4 mb-4 sm:mb-6">
+          <div className="inline-flex items-center gap-4 mb-8">
             <motion.div 
               className="h-px bg-golden w-20 sm:w-32"
               animate={{ width: isInView ? ["0%", "100%"] : "0%" }}
@@ -908,7 +908,7 @@ const AboutUsSection = () => {
 
         {/* Interactive Chapter Navigation */}
         <motion.div
-          className="flex justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-4 sm:px-0"
+          className="flex justify-center gap-2 sm:gap-4 mb-12 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -1009,7 +1009,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-8 sm:mt-10"
+          className="mt-16"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -1152,7 +1152,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 py-8 sm:py-12 snap-section overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 py-16 sm:py-24 snap-section overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-golden/5 via-black to-golden/8"></div>
 
@@ -1210,9 +1210,9 @@ const FAQSection = () => {
         transition={{ duration: 1 }}
       >
         {/* Section Header */}
-        <div className="text-center mb-8 sm:mb-12">
+        <div className="text-center mb-16 sm:mb-20">
           <motion.div
-            className="inline-flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6"
+            className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -1227,7 +1227,7 @@ const FAQSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -1259,7 +1259,7 @@ const FAQSection = () => {
 
         {/* Bottom Decorative Element */}
         <motion.div
-          className="flex justify-center items-center gap-4 sm:gap-6 mt-8 sm:mt-12"
+          className="flex justify-center items-center gap-4 sm:gap-6 mt-16 sm:mt-20"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -1351,7 +1351,7 @@ const ReadyToScaleSection = () => {
       >
         {/* Title */}
         <motion.h2
-          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 leading-tight"
+          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -1361,7 +1361,7 @@ const ReadyToScaleSection = () => {
 
         {/* Description */}
         <motion.p
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 sm:mb-10 max-w-5xl mx-auto leading-relaxed"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-12 sm:mb-16 max-w-5xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -1390,7 +1390,7 @@ const ReadyToScaleSection = () => {
 
         {/* Decorative Elements */}
         <motion.div
-          className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10"
+          className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
