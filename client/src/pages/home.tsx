@@ -267,8 +267,8 @@ const WhyChooseUsCard = ({
       {/* Dynamic Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-golden/15 via-black to-golden/8"></div>
       
-      {/* Animated Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
+      {/* Animated Background Pattern - Hidden on mobile */}
+      <div className="absolute inset-0 opacity-10 hidden sm:block">
         {[...Array(12)].map((_, i) => (
           <motion.div
             key={i}
@@ -306,7 +306,7 @@ const WhyChooseUsCard = ({
 
       {/* Content */}
       <motion.div
-        className="text-left max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 z-10 pr-0 sm:pr-20 lg:pr-28"
+        className="text-left max-w-4xl mx-auto px-4 sm:px-5 lg:px-6 z-50 pr-0 sm:pr-20 lg:pr-28 relative"
         style={{ scale }}
       >
         {/* Icon & Number */}
@@ -338,7 +338,7 @@ const WhyChooseUsCard = ({
 
         {/* Description */}
         <motion.div
-          className="bg-black/50 backdrop-blur-md rounded-2xl sm:rounded-3xl p-3 sm:p-5 border border-golden/20 max-w-3xl"
+          className="bg-black/80 backdrop-blur-md rounded-2xl sm:rounded-3xl p-4 sm:p-6 border border-golden/30 max-w-3xl relative z-10"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
