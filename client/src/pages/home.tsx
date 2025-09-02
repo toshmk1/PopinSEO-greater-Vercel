@@ -69,6 +69,7 @@ const HeroSection = () => {
           <Button
             size="lg"
             className="bg-golden text-black font-semibold text-lg sm:text-xl px-8 sm:px-12 py-4 sm:py-6 rounded-lg hover:bg-golden/90 transition-all duration-300 transform hover:scale-105"
+            onClick={() => window.open('http://wa.me/37495303063', '_blank')}
           >
             Chat with Our Manager
           </Button>
@@ -1383,6 +1384,7 @@ const ReadyToScaleSection = () => {
               boxShadow: "0 25px 50px -12px rgba(253, 191, 0, 0.4)",
             }}
             whileTap={{ scale: 0.95 }}
+            onClick={() => window.open('http://wa.me/37495303063', '_blank')}
           >
             Start Your Transformation
           </motion.button>
