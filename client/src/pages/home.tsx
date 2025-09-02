@@ -6,12 +6,23 @@ import stage2 from "@/images/stage 2.jpg";
 import stage3 from "@/images/stage 3.jpg";
 
 const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) => {
-  const menuRef = useRef<HTMLDivElement>(null);
+  const desktopMenuRef = useRef<HTMLDivElement>(null);
+  const mobileMenuRef = useRef<HTMLDivElement>(null);
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
   
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {
-      if (isOpen && menuRef.current && !menuRef.current.contains(event.target as Node)) {
-        onClose();
+      if (isOpen && !isButtonClicked) {
+        const desktopMenu = desktopMenuRef.current;
+        const mobileMenu = mobileMenuRef.current;
+        const target = event.target as Node;
+        
+        const clickedInsideDesktop = desktopMenu && desktopMenu.contains(target);
+        const clickedInsideMobile = mobileMenu && mobileMenu.contains(target);
+        
+        if (!clickedInsideDesktop && !clickedInsideMobile) {
+          onClose();
+        }
       }
     };
 
@@ -25,7 +36,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
     };
-  }, [isOpen, onClose]);
+  }, [isOpen, onClose, isButtonClicked]);
 
   if (!isOpen) return null;
 
@@ -41,7 +52,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         onClick={onClose}
       >
         <motion.div
-          ref={menuRef}
+          ref={desktopMenuRef}
           initial={{ opacity: 0, scale: 0.8, y: -20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.8, y: -20 }}
@@ -65,8 +76,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setIsButtonClicked(true);
                 window.open('https://wa.me/37495303063', '_blank');
-                setTimeout(() => onClose(), 300);
+                setTimeout(() => {
+                  onClose();
+                  setIsButtonClicked(false);
+                }, 500);
               }}
             >
               <motion.div
@@ -91,8 +106,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setIsButtonClicked(true);
                 window.open('https://t.me/h00000st', '_blank');
-                setTimeout(() => onClose(), 300);
+                setTimeout(() => {
+                  onClose();
+                  setIsButtonClicked(false);
+                }, 500);
               }}
             >
               <motion.div
@@ -119,7 +138,7 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
         onClick={onClose}
       >
         <motion.div
-          ref={menuRef}
+          ref={mobileMenuRef}
           initial={{ opacity: 0, scale: 0.9, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -138,8 +157,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setIsButtonClicked(true);
                 window.open('https://wa.me/37495303063', '_blank');
-                setTimeout(() => onClose(), 300);
+                setTimeout(() => {
+                  onClose();
+                  setIsButtonClicked(false);
+                }, 500);
               }}
             >
               <div className="w-5 h-5 bg-green-500 rounded-full"></div>
@@ -151,8 +174,12 @@ const ContactSubmenu = ({ isOpen, onClose }: { isOpen: boolean; onClose: () => v
               onClick={(e) => {
                 e.preventDefault();
                 e.stopPropagation();
+                setIsButtonClicked(true);
                 window.open('https://t.me/h00000st', '_blank');
-                setTimeout(() => onClose(), 300);
+                setTimeout(() => {
+                  onClose();
+                  setIsButtonClicked(false);
+                }, 500);
               }}
             >
               <div className="w-5 h-5 bg-blue-500 rounded-full"></div>
