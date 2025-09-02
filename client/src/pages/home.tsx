@@ -1061,13 +1061,13 @@ const AboutUsSection = () => {
           <div className="relative bg-black/80 backdrop-blur-lg rounded-3xl p-4 sm:p-6 border border-golden/30 m-1">
             {/* Chapter Icon */}
             <motion.div
-              className="absolute -top-8 left-1/2 transform -translate-x-1/2 w-16 h-16 bg-golden/20 backdrop-blur-md rounded-full border border-golden/40 flex items-center justify-center"
+              className="absolute -top-6 sm:-top-8 left-1/2 transform -translate-x-1/2 w-12 h-12 sm:w-16 sm:h-16 bg-golden/20 backdrop-blur-md rounded-full border border-golden/40 flex items-center justify-center"
               key={currentChapter}
               initial={{ scale: 0, rotate: 180 }}
               animate={{ scale: 1, rotate: 0 }}
               transition={{ duration: 0.6 }}
             >
-              <span className="text-2xl">{chapters[currentChapter].icon}</span>
+              <span className="text-lg sm:text-2xl">{chapters[currentChapter].icon}</span>
             </motion.div>
 
             {/* Chapter Title */}
