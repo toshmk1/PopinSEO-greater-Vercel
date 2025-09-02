@@ -696,7 +696,7 @@ const HowItWorksSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 relative leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 relative leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -868,12 +868,12 @@ const AboutUsSection = () => {
       >
         {/* Section Header with Interactive Elements */}
         <motion.div
-          className="mb-8 sm:mb-12"
+          className="mb-4 sm:mb-8"
           initial={{ y: -50 }}
           animate={isInView ? { y: 0 } : { y: -50 }}
           transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <div className="inline-flex items-center gap-4 mb-8">
+          <div className="inline-flex items-center gap-4 mb-4 sm:mb-6">
             <motion.div 
               className="h-px bg-golden w-20 sm:w-32"
               animate={{ width: isInView ? ["0%", "100%"] : "0%" }}
@@ -908,7 +908,7 @@ const AboutUsSection = () => {
 
         {/* Interactive Chapter Navigation */}
         <motion.div
-          className="flex justify-center gap-2 sm:gap-4 mb-8 sm:mb-10 px-4 sm:px-0"
+          className="flex justify-center gap-2 sm:gap-4 mb-6 sm:mb-8 px-4 sm:px-0"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.6 }}
@@ -1009,7 +1009,7 @@ const AboutUsSection = () => {
 
         {/* Call to Action */}
         <motion.div
-          className="mt-10 sm:mt-14"
+          className="mt-8 sm:mt-10"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 1.2 }}
@@ -1152,7 +1152,7 @@ const FAQSection = () => {
   ];
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 py-16 sm:py-24 snap-section overflow-hidden">
+    <section className="min-h-screen flex items-center justify-center bg-black relative px-4 sm:px-6 lg:px-8 py-8 sm:py-12 snap-section overflow-hidden">
       {/* Background Elements */}
       <div className="absolute inset-0 bg-gradient-to-b from-golden/5 via-black to-golden/8"></div>
 
@@ -1210,9 +1210,9 @@ const FAQSection = () => {
         transition={{ duration: 1 }}
       >
         {/* Section Header */}
-        <div className="text-center mb-16 sm:mb-20">
+        <div className="text-center mb-8 sm:mb-12">
           <motion.div
-            className="inline-flex items-center gap-3 sm:gap-4 mb-8 sm:mb-12"
+            className="inline-flex items-center gap-3 sm:gap-4 mb-4 sm:mb-6"
             initial={{ opacity: 0, scale: 0.8 }}
             animate={
               isInView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }
@@ -1227,7 +1227,7 @@ const FAQSection = () => {
           </motion.div>
 
           <motion.h2
-            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
+            className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 leading-tight"
             initial={{ opacity: 0, y: 30 }}
             animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -1259,7 +1259,7 @@ const FAQSection = () => {
 
         {/* Bottom Decorative Element */}
         <motion.div
-          className="flex justify-center items-center gap-4 sm:gap-6 mt-16 sm:mt-20"
+          className="flex justify-center items-center gap-4 sm:gap-6 mt-8 sm:mt-12"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 1.2 }}
@@ -1351,7 +1351,7 @@ const ReadyToScaleSection = () => {
       >
         {/* Title */}
         <motion.h2
-          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-8 sm:mb-12 leading-tight"
+          className="font-league text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-golden mb-4 sm:mb-6 leading-tight"
           initial={{ opacity: 0, y: 30 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
@@ -1361,7 +1361,7 @@ const ReadyToScaleSection = () => {
 
         {/* Description */}
         <motion.p
-          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-12 sm:mb-16 max-w-5xl mx-auto leading-relaxed"
+          className="text-xl sm:text-2xl md:text-3xl lg:text-4xl text-gray-300 mb-8 sm:mb-10 max-w-5xl mx-auto leading-relaxed"
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
           transition={{ duration: 0.8, delay: 0.4 }}
@@ -1390,7 +1390,7 @@ const ReadyToScaleSection = () => {
 
         {/* Decorative Elements */}
         <motion.div
-          className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-12 sm:mt-16"
+          className="flex justify-center items-center gap-4 sm:gap-6 md:gap-8 mt-8 sm:mt-10"
           initial={{ opacity: 0 }}
           animate={isInView ? { opacity: 1 } : { opacity: 0 }}
           transition={{ duration: 1, delay: 0.8 }}
