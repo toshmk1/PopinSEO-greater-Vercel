@@ -261,7 +261,7 @@ const WhyChooseUsCard = ({
   return (
     <motion.div
       ref={ref}
-      className="min-h-[60vh] py-8 sm:py-16 flex items-center justify-center relative snap-section overflow-hidden"
+      className="min-h-[40vh] py-4 sm:py-8 flex items-center justify-center relative snap-section overflow-hidden"
       style={{ y, opacity }}
     >
       {/* Dynamic Background */}
@@ -295,7 +295,7 @@ const WhyChooseUsCard = ({
 
       {/* Visual Element */}
       <motion.div
-        className="absolute right-8 sm:right-16 lg:right-24 top-1/2 transform -translate-y-1/2 z-20"
+        className="absolute right-4 sm:right-12 lg:right-20 top-1/2 transform -translate-y-1/2 z-20 scale-75 sm:scale-100"
         initial={{ opacity: 0, x: 100, scale: 0.5 }}
         whileInView={{ opacity: 1, x: 0, scale: 1 }}
         transition={{ duration: 1.2, delay: 0.8 }}
@@ -306,7 +306,7 @@ const WhyChooseUsCard = ({
 
       {/* Content */}
       <motion.div
-        className="text-left max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10 pr-20 sm:pr-32 lg:pr-48"
+        className="text-left max-w-4xl mx-auto px-3 sm:px-5 lg:px-6 z-10 pr-12 sm:pr-20 lg:pr-28"
         style={{ scale }}
       >
         {/* Icon & Number */}
@@ -317,11 +317,11 @@ const WhyChooseUsCard = ({
           transition={{ duration: 0.8, delay: 0.2 }}
           viewport={{ once: true }}
         >
-          <div className="w-16 h-16 sm:w-20 sm:h-20 bg-golden/20 backdrop-blur-md rounded-2xl border border-golden/30 flex items-center justify-center">
-            <span className="text-3xl sm:text-4xl">{icon}</span>
+          <div className="w-12 h-12 sm:w-16 sm:h-16 bg-golden/20 backdrop-blur-md rounded-2xl border border-golden/30 flex items-center justify-center">
+            <span className="text-2xl sm:text-3xl">{icon}</span>
           </div>
-          <div className="w-12 h-12 sm:w-14 sm:h-14 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-golden">
-            <span className="text-golden font-league font-bold text-xl sm:text-2xl">{index}</span>
+          <div className="w-10 h-10 sm:w-12 sm:h-12 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center border-2 border-golden">
+            <span className="text-golden font-league font-bold text-lg sm:text-xl">{index}</span>
           </div>
         </motion.div>
 
@@ -349,7 +349,7 @@ const WhyChooseUsCard = ({
             scale: 1.02
           }}
         >
-          <p className="text-base sm:text-lg md:text-xl text-gray-200 leading-relaxed">
+          <p className="text-sm sm:text-base md:text-lg text-gray-200 leading-relaxed">
             {description}
           </p>
           
